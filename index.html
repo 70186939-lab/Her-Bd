@@ -113,9 +113,20 @@ button:focus-visible,.tilt:focus-visible,[role=button]:focus-visible{outline:2px
 body[data-t=hot]{--glow:rgba(251,113,133,.6);background:radial-gradient(ellipse at 50% -10%,#9f1239,transparent 60%),linear-gradient(180deg,#1a0205,#3b0610 50%,#5c0a1a);background-attachment:fixed}
 body[data-t=violet]{--glow:rgba(167,139,250,.5);background:radial-gradient(ellipse at 50% -10%,#4c1d95,transparent 60%),linear-gradient(180deg,#05020d,#12062a 50%,#1f0838);background-attachment:fixed}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01s!important}.rv,.ltr,.fade,.late,.letter p,.ln{opacity:1;transform:none}.rose .p{opacity:1;transform:none}.hd{stroke-dashoffset:0}}
+
+/* COUNTDOWN LOCK */
+#wait{position:fixed;inset:0;z-index:120;background:radial-gradient(circle at 50% 40%,#2a0612,#000 72%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:1.5rem;overflow-y:auto;transition:opacity 1.6s ease,visibility 1.6s,transform 1.6s}
+#wait.gone{opacity:0;visibility:hidden;transform:scale(1.1)}
+body.waiting #gate{visibility:hidden}
+body.waiting .late{animation-play-state:paused}
+.tbox{min-width:64px;padding:.9rem .6rem;border-radius:1.2rem}
+@media(min-width:640px){.tbox{min-width:92px;padding:1.2rem .8rem}}
+.tbox b{display:block;font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;font-size:2.2rem;line-height:1;color:#fff;text-shadow:0 0 22px rgba(244,63,94,.7)}
+@media(min-width:640px){.tbox b{font-size:3.4rem}}
+.tbox span{display:block;margin-top:.4rem;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(253,205,218,.7)}
 </style>
 </head>
-<body class="lock">
+<body class="lock waiting">
 <div id="progress"></div>
 <canvas id="fx"></canvas>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
@@ -125,6 +136,20 @@ body[data-t=violet]{--glow:rgba(167,139,250,.5);background:radial-gradient(ellip
 </defs></svg>
 <div class="orb" style="width:420px;height:420px;background:#9f1239;opacity:.3;top:-100px;left:-120px"></div>
 <div class="orb" style="width:460px;height:460px;background:#4c1d95;opacity:.28;bottom:-140px;right:-140px;animation-delay:-7s"></div>
+
+<div id="wait">
+  <div id="waitRose" class="w-40 h-40 sm:w-52 sm:h-52"></div>
+  <p class="script text-4xl sm:text-5xl mt-4">Rumaisa, your surprise is waiting 🖤</p>
+  <p class="serif italic text-xl sm:text-2xl text-rose-100/90 mt-3">Open your surprise on 18 October, at 12:00 AM</p>
+  <div class="flex gap-2 sm:gap-4 mt-8" role="timer" aria-live="off">
+    <div class="tbox glass"><b id="tD">00</b><span>Days</span></div>
+    <div class="tbox glass"><b id="tH">00</b><span>Hours</span></div>
+    <div class="tbox glass"><b id="tM">00</b><span>Minutes</span></div>
+    <div class="tbox glass"><b id="tS">00</b><span>Seconds</span></div>
+  </div>
+  <p class="text-rose-200/60 font-light mt-8 text-sm">Keep this page open, or come back at midnight. It will open by itself. 🤲</p>
+  <p class="script text-3xl mt-3">From Ahmad, with all his love</p>
+</div>
 
 <div id="gate">
   <div id="gateRose" class="w-56 h-56 sm:w-72 sm:h-72"></div>
@@ -447,6 +472,34 @@ addEventListener('scroll',function(){
   var d=document.documentElement,h=d.scrollHeight-d.clientHeight;
   $('progress').style.width=(h>0?d.scrollTop/h*100:0)+'%';
 },{passive:true});
+</script>
+<script>
+(function(){
+  // 18 Oct 2026, 12:00 AM Pakistan time (UTC+5). Add #test to the link to skip the timer while testing.
+  var TARGET=new Date('2026-10-18T00:00:00+05:00').getTime();
+  var w=document.getElementById('wait'),done=false;
+  function two(n){return n<10?'0'+n:''+n}
+  function unlock(live){
+    if(done)return;done=true;
+    document.body.classList.remove('waiting');
+    w.classList.add('gone');
+    if(live)shower();
+  }
+  function tick(){
+    var d=TARGET-Date.now();
+    if(d<=0){document.getElementById('tD').textContent=document.getElementById('tH').textContent=document.getElementById('tM').textContent=document.getElementById('tS').textContent='00';unlock(true);return}
+    var s=Math.floor(d/1000);
+    document.getElementById('tD').textContent=two(Math.floor(s/86400));
+    document.getElementById('tH').textContent=two(Math.floor(s%86400/3600));
+    document.getElementById('tM').textContent=two(Math.floor(s%3600/60));
+    document.getElementById('tS').textContent=two(s%60);
+  }
+  document.addEventListener('DOMContentLoaded',function(){
+    document.getElementById('waitRose').innerHTML=makeRose('go spin');
+    if(location.hash==='#test'||Date.now()>=TARGET){unlock(false);return}
+    tick();setInterval(function(){if(!done)tick()},1000);
+  });
+})();
 </script>
 </body>
 </html>
