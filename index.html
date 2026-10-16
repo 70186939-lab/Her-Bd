@@ -1,179 +1,285 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="color-scheme" content="dark">
 <title>Happy Birthday, Rumaisa 🖤</title>
-<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/lucide@0.383.0/dist/umd/lucide.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<script>tailwind.config={theme:{extend:{fontFamily:{serif:['"Cormorant Garamond"','Georgia','serif'],sans:['"Plus Jakarta Sans"','system-ui','sans-serif'],script:['"Great Vibes"','cursive']}}}}</script>
+<script>
+tailwind.config={theme:{extend:{fontFamily:{serif:['"Cormorant Garamond"','Georgia','serif'],sans:['"Plus Jakarta Sans"','system-ui','sans-serif'],script:['"Great Vibes"','cursive']}}}}
+</script>
 <style>
-:root{--silver:#ead7e0;--glow:rgba(190,18,60,.4);color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
-body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--silver);background:radial-gradient(ellipse at 50% -10%,#3b0a1a,transparent 60%),linear-gradient(180deg,#050205,#0d0308 50%,#16050e);background-color:#050205;background-attachment:fixed;min-height:100vh;overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+:root{--wine:#be123c;--silver:#ead7e0;--glow:rgba(190,18,60,.4)}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--silver);background:radial-gradient(ellipse at 50% -10%,#3b0a1a,transparent 60%),linear-gradient(180deg,#050205,#0d0308 50%,#16050e);background-attachment:fixed;min-height:100vh;overflow-x:hidden}
 body.lock{overflow:hidden}
 canvas#fx{position:fixed;inset:0;z-index:0;pointer-events:none}
-.orb{position:fixed;border-radius:50%;filter:blur(90px);z-index:0;pointer-events:none;animation:drift 20s ease-in-out infinite alternate}
-@keyframes drift{to{transform:translate(60px,-80px) scale(1.2)}}
+.orb{position:fixed;border-radius:50%;filter:blur(100px);z-index:0;pointer-events:none;animation:drift 20s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate(70px,-90px) scale(1.25)}}
 main,header,footer,section{position:relative;z-index:1}
-.glass{background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.02));backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(234,215,224,.16);box-shadow:0 12px 40px -12px #000,0 0 36px -14px var(--glow)}
-.serif{font-family:'Cormorant Garamond',Georgia,serif}
+.glass{background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.015));backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(234,215,224,.16);box-shadow:0 12px 40px -12px #000,0 0 36px -14px var(--glow)}
+.serif{font-family:'Cormorant Garamond',serif}
 .script{font-family:'Great Vibes',cursive;color:#f3c6d3;text-shadow:0 0 30px rgba(190,18,60,.6)}
 .sheen{background:linear-gradient(100deg,#8c8c96,#fff,#f3a9bd,#be123c,#fff,#8c8c96);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sh 8s linear infinite}
 @keyframes sh{to{background-position:300% 0}}
 .float{animation:fl 6s ease-in-out infinite}@keyframes fl{50%{transform:translateY(-12px)}}
 .beat{animation:beat 2.4s ease-in-out infinite}@keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.18)}30%{transform:scale(1)}45%{transform:scale(1.12)}}
-.rv{opacity:0;transform:translateY(28px);transition:opacity 1s ease,transform 1s cubic-bezier(.2,.7,.2,1)}
+.rv{opacity:0;transform:translateY(28px) scale(.98);transition:opacity 1s ease,transform 1s cubic-bezier(.2,.7,.2,1)}
 .rv.show{opacity:1;transform:none}
-.ltr{display:inline-block;opacity:0;transform:translateY(40px);animation:ltr 1.1s cubic-bezier(.2,.8,.2,1) forwards}
+.ltr{display:inline-block;opacity:0;transform:translateY(40px) rotateX(-70deg);animation:ltr 1.1s cubic-bezier(.2,.8,.2,1) forwards}
 @keyframes ltr{to{opacity:1;transform:none}}
 .fade{opacity:0;animation:fd 1.4s ease forwards}@keyframes fd{to{opacity:1}}
-.late{opacity:0;animation:fd 1.4s ease 2.6s forwards}
-body:not(.ready) .fade,body:not(.ready) .ltr{animation-play-state:paused}
-.ltr.sheen{animation:ltr 1.1s cubic-bezier(.2,.8,.2,1) forwards,sh 8s linear infinite}
-button:focus-visible,.tilt:focus-visible,[role=button]:focus-visible{outline:2px solid #f3a9bd;outline-offset:3px}
-.btn{transition:transform .35s,box-shadow .35s;touch-action:manipulation}.btn:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 0 40px -4px var(--glow)}
+button:focus-visible,.tilt:focus-visible{outline:2px solid #f3a9bd;outline-offset:3px}
+.btn{transition:transform .35s,box-shadow .35s}.btn:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 0 40px -4px var(--glow)}
 .hot{background:linear-gradient(135deg,rgba(190,18,60,.6),rgba(88,28,135,.4))}
-
-/* ROSE */
-.rose{display:block;width:100%;height:100%;overflow:visible;filter:drop-shadow(0 0 12px rgba(244,63,94,.5))}
-.rose .p{transform-origin:50px 50px;animation:bloom 1.8s cubic-bezier(.2,.8,.2,1) both paused}
-.rose.go .p,.rv.show .rose .p{animation-play-state:running}
-.rose.spin{animation:spin 60s linear infinite}
-@keyframes bloom{from{transform:scale(.05) rotate(-80deg);opacity:0}}
+/* rose */
+.rose{filter:drop-shadow(0 0 14px rgba(190,18,60,.55));overflow:visible}
+.rose .p{transform-origin:50px 50px;animation:bloom 1.9s cubic-bezier(.2,.8,.2,1) both paused}
+.rose.go .p{animation-play-state:running}
+.rose.go{animation:spin 50s linear infinite}
+@keyframes bloom{from{transform:scale(.04) rotate(-70deg);opacity:0}}
 @keyframes spin{to{transform:rotate(360deg)}}
-
-/* gate */
-#gate{position:fixed;inset:0;z-index:100;background:radial-gradient(circle at 50% 45%,#2a0612,#000 70%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:1.5rem;transition:opacity 1.4s ease,visibility 1.4s,transform 1.4s}
+#gate{position:fixed;inset:0;z-index:100;background:radial-gradient(circle at 50% 45%,#2a0612,#000 70%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:1.5rem;transition:opacity 1.6s ease,visibility 1.6s,transform 1.6s}
 #gate.gone{opacity:0;visibility:hidden;transform:scale(1.15)}
-#gateRose{transition:transform 1.6s cubic-bezier(.2,.8,.2,1),filter 1.6s}
-#gate.burst #gateRose{transform:scale(2);filter:brightness(1.8)}
+/* marquee */
 .mq{display:flex;width:max-content;animation:mq 40s linear infinite}@keyframes mq{to{transform:translateX(-50%)}}
-#heroRose{position:absolute;left:50%;top:50%;width:min(92vw,620px);aspect-ratio:1;transform:translate(-50%,-50%);opacity:.28;pointer-events:none;z-index:-1}
-
 /* cards */
-.tilt{perspective:1000px;cursor:pointer;min-height:250px;touch-action:manipulation}
-.flip-in{position:relative;height:100%;min-height:250px;transition:transform .9s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d}
-.tilt.open .flip-in{transform:rotateY(180deg)}
-.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:1.5rem;padding:1.5rem;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.tilt{perspective:1000px;cursor:pointer;height:100%}
+.flip-in{position:relative;height:100%;min-height:270px;transition:transform .9s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d;transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg))}
+.tilt.open .flip-in{transform:rotateY(calc(180deg + var(--ry,0deg))) rotateX(var(--rx,0deg))}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:1.5rem;padding:1.6rem;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.face::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,0%),rgba(255,255,255,.14),transparent 55%);pointer-events:none}
 .back{transform:rotateY(180deg)}
-.crystal{background:linear-gradient(135deg,#43122c,#12040e 50%,#300c26);border:1px solid rgba(255,255,255,.25);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 14px 40px -12px #000,0 0 36px -10px var(--glow)}
-.face h3,.face p{position:relative;z-index:1}
-.gem{display:grid;place-items:center;width:60px;height:60px;margin:0 auto 1rem;border-radius:50%;background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.4),rgba(190,18,60,.4) 55%,rgba(0,0,0,.35));box-shadow:0 0 24px rgba(244,63,94,.5);animation:fl 5s ease-in-out infinite}
-.wm{position:absolute;right:-30px;bottom:-30px;width:140px;height:140px;opacity:.22;pointer-events:none}
-
+.tilt:hover .front{box-shadow:0 0 50px -8px var(--glow)}
 /* modal */
 #modal{opacity:0;visibility:hidden;transition:opacity .5s,visibility .5s}#modal.on{opacity:1;visibility:visible}
-#sheet{transform:scale(.9) translateY(30px);opacity:0;transition:transform .6s cubic-bezier(.2,.8,.2,1),opacity .5s}#modal.on #sheet{transform:none;opacity:1}
+#sheet{transform:scale(.88) translateY(30px);opacity:0;transition:transform .6s cubic-bezier(.2,.8,.2,1),opacity .5s}#modal.on #sheet{transform:none;opacity:1}
 .letter p{margin-bottom:1.1rem;opacity:0}
 #modal.on .letter p{animation:fd 1.2s ease forwards}
-#modal.on .letter p:nth-of-type(1){animation-delay:.4s}#modal.on .letter p:nth-of-type(2){animation-delay:1.1s}#modal.on .letter p:nth-of-type(3){animation-delay:1.8s}#modal.on .letter p:nth-of-type(4){animation-delay:2.5s}#modal.on .letter p:nth-of-type(5){animation-delay:3.2s}#modal.on .letter p:nth-of-type(6){animation-delay:3.9s}#modal.on .letter p:nth-of-type(7){animation-delay:4.6s}
-
+#modal.on .letter p:nth-of-type(1){animation-delay:.5s}#modal.on .letter p:nth-of-type(2){animation-delay:1.3s}#modal.on .letter p:nth-of-type(3){animation-delay:2.1s}#modal.on .letter p:nth-of-type(4){animation-delay:2.9s}#modal.on .letter p:nth-of-type(5){animation-delay:3.7s}#modal.on .letter p:nth-of-type(6){animation-delay:4.5s}#modal.on .letter p:nth-of-type(7){animation-delay:5.3s}
+.letter::-webkit-scrollbar{width:6px}.letter::-webkit-scrollbar-thumb{background:rgba(190,18,60,.5);border-radius:9px}
 .eq span{display:inline-block;width:3px;background:#f3a9bd;border-radius:3px;height:6px;margin:0 1px}
 .eq.play span{animation:eq 1s ease-in-out infinite}.eq.play span:nth-child(2){animation-delay:.2s}.eq.play span:nth-child(3){animation-delay:.4s}.eq.play span:nth-child(4){animation-delay:.1s}
-@keyframes eq{50%{height:18px}}
-.heart,.petal{position:fixed;pointer-events:none}
+@keyframes eq{50%{height:20px}}
+.heart,.spark,.petal{position:fixed;pointer-events:none}
 .heart{z-index:60;animation:up 2.4s ease-out forwards}@keyframes up{to{transform:translateY(-70vh) scale(1.5);opacity:0}}
-.petal{border-radius:70% 0 70% 0;background:linear-gradient(135deg,#be123c,#1a0509 70%);box-shadow:0 0 10px rgba(244,63,94,.45);top:-30px;z-index:60;animation:fall linear forwards}@keyframes fall{to{transform:translate(var(--dx),110vh) rotate(540deg)}}
+.spark{z-index:60;width:7px;height:7px;border-radius:50%;background:radial-gradient(#fff,#be123c 60%,transparent);animation:sp 1s ease-out forwards}@keyframes sp{to{transform:translateY(26px) scale(.2);opacity:0}}
+.petal{border-radius:70% 0 70% 0;background:linear-gradient(135deg,#8a1f40,#1a0509 70%);box-shadow:0 0 10px rgba(244,63,94,.45);top:-30px;z-index:2;animation:fall linear forwards}@keyframes fall{to{transform:translate(var(--dx),110vh) rotate(540deg)}}
 #progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:90;background:linear-gradient(90deg,#be123c,#fff,#581c87)}
-
 /* garden */
-#garden{position:relative;height:300px;border-radius:2rem;overflow:hidden;cursor:pointer;background:linear-gradient(#0000,rgba(190,18,60,.1));touch-action:manipulation}
-.plant{position:absolute;bottom:10px;width:64px;margin-left:-32px;display:flex;flex-direction:column;align-items:center;pointer-events:none}
-.plant .bud{width:64px;height:64px;margin-bottom:-12px}
-.stem{width:3px;height:0;background:linear-gradient(#4a7a50,#0d2a14);border-radius:3px;transition:height 1.6s cubic-bezier(.2,.7,.2,1)}
+#garden{position:relative;height:300px;border-radius:2rem;overflow:hidden;cursor:pointer;background:linear-gradient(#0000,rgba(190,18,60,.1))}
+#garden::after{content:"";position:absolute;left:0;right:0;bottom:0;height:34px;background:linear-gradient(#0000,#000a)}
+.plant{position:absolute;bottom:14px;width:60px;margin-left:-30px;display:flex;flex-direction:column;align-items:center}
+.stem{width:3px;height:0;background:linear-gradient(#3f6b45,#0d2a14);border-radius:3px;transition:height 1.6s cubic-bezier(.2,.7,.2,1)}
+.plant .rose{width:60px;height:60px;margin-bottom:-14px;order:-1}
 .whisper{position:absolute;white-space:nowrap;font-family:'Great Vibes',cursive;font-size:1.5rem;color:#f3c6d3;pointer-events:none;animation:up 3.2s ease-out forwards}
-
+/* candle */
+.flame{transform-origin:50% 100%;animation:fk .35s ease-in-out infinite alternate;transition:opacity .6s}@keyframes fk{to{transform:scale(1.12,.92) rotate(2deg)}}
+.out .flame{opacity:0;animation:none}.smoke{opacity:0;transition:opacity 1s}.out .smoke{opacity:.7;transform:translateY(-14px);transition:all 2s}
+/* hero waits for the gate to open */
+body:not(.ready) .fade,body:not(.ready) .ltr{animation-play-state:paused}
+/* crystal cards: tilt layer and flip layer are separate so both feel smooth */
+.tilt{perspective:none;transform-style:preserve-3d;transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .25s ease-out}
+.tilt .flip-in{transform:none;transition:transform .95s cubic-bezier(.2,.7,.2,1)}
+.tilt.open .flip-in{transform:rotateY(180deg)}
+.cw.show{animation:bob 7s ease-in-out infinite;animation-delay:calc(1.4s + var(--d,0s))}
+@keyframes bob{50%{transform:translateY(-9px)}}
+.crystal{background:linear-gradient(135deg,#43122c,#12040e 48%,#300c26);border:1px solid rgba(255,255,255,.32);box-shadow:inset 0 1px 0 rgba(255,255,255,.45),inset 0 -34px 50px -30px rgba(190,18,60,.5),0 14px 40px -12px #000,0 0 44px -10px var(--glow);animation:prism 6s ease-in-out infinite;animation-delay:var(--sd,0s)}
+@keyframes prism{50%{border-color:rgba(244,114,182,.7)}}
+.face::before{content:"";position:absolute;inset:-50%;background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.24) 50%,transparent 58%);transform:translateX(-65%);animation:shine 5.5s ease-in-out infinite;animation-delay:var(--sd,0s);pointer-events:none;z-index:2}
+@keyframes shine{45%,100%{transform:translateX(65%)}}
+.face::after{background:radial-gradient(circle at var(--mx,50%) var(--my,0%),rgba(255,255,255,.2),transparent 50%),linear-gradient(60deg,transparent 47%,rgba(255,255,255,.09) 48%,transparent 50%),linear-gradient(-60deg,transparent 62%,rgba(255,255,255,.08) 63%,transparent 65%),linear-gradient(120deg,transparent 20%,rgba(255,255,255,.06) 21%,transparent 24%)}
+.face h3,.face p{position:relative;z-index:1}
+.face h3{text-shadow:0 0 22px rgba(244,63,94,.6)}
+.gem{position:relative;z-index:1;display:grid;place-items:center;width:64px;height:64px;margin:0 auto 1rem;border-radius:50%;background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.4),rgba(190,18,60,.4) 55%,rgba(0,0,0,.35));box-shadow:0 0 28px rgba(244,63,94,.55),inset 0 0 12px rgba(255,255,255,.35);animation:fl 5s ease-in-out infinite}
+.tw{position:absolute;z-index:3;color:#fff;font-size:13px;text-shadow:0 0 8px #f43f5e;animation:tw 2.6s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.1;transform:scale(.5)}50%{opacity:1;transform:scale(1.25)}}
+.wm{position:absolute;right:-34px;bottom:-34px;width:160px;height:160px;opacity:.25;pointer-events:none;z-index:0}
+.wm .rose,.wm .rose.go{animation:none;filter:none}
+.rv.show .wm .p{animation-play-state:running}
 /* gift */
 #giftBox{cursor:pointer;touch-action:manipulation}
 #giftBox:not(.opened){animation:fl 4s ease-in-out infinite}
-#giftBox svg.box{z-index:2;filter:drop-shadow(0 18px 24px #000)}
+#giftBox svg{z-index:2;filter:drop-shadow(0 18px 24px #000)}
 #lid{transform-box:fill-box;transform-origin:center;transition:transform 1.3s cubic-bezier(.3,1.5,.5,1)}
 .opened #lid{transform:translate(-64px,-90px) rotate(-28deg)}
-#giftRose{position:absolute;left:50%;bottom:130px;width:230px;height:230px;margin-left:-115px;z-index:1;opacity:0;transform:translateY(90px) scale(.1);transition:transform 2.4s cubic-bezier(.2,.8,.2,1) .5s,opacity 1.2s .5s}
+#giftRose{position:absolute;left:50%;bottom:140px;width:240px;height:240px;margin-left:-120px;z-index:1;opacity:0;transform:translateY(90px) scale(.1);transition:transform 2.6s cubic-bezier(.2,.8,.2,1) .6s,opacity 1.2s .6s}
 .opened #giftRose{opacity:1;transform:translateY(-30px) scale(1)}
-.aura{position:absolute;left:50%;top:30%;width:320px;height:320px;margin:-160px 0 0 -160px;border-radius:50%;background:radial-gradient(circle,rgba(190,18,60,.5),transparent 65%);opacity:0;transition:opacity 2s 1s;animation:pulse 3.4s ease-in-out infinite;pointer-events:none}
-.opened .aura{opacity:1}@keyframes pulse{50%{transform:scale(1.2)}}
+.aura{position:absolute;left:50%;top:30%;width:340px;height:340px;margin:-170px 0 0 -170px;border-radius:50%;background:radial-gradient(circle,rgba(190,18,60,.5),transparent 65%);opacity:0;transition:opacity 2s 1s;animation:pulse 3.4s ease-in-out infinite;pointer-events:none}
+.aura.a2{background:radial-gradient(circle,rgba(124,58,237,.35),transparent 65%);animation-delay:-1.7s}
+.opened .aura{opacity:1}
+@keyframes pulse{50%{transform:scale(1.2)}}
+.orbit{position:absolute;left:50%;top:30%;color:#fff;text-shadow:0 0 10px #f43f5e;animation:orbit 9s linear infinite;pointer-events:none;z-index:3}
+@keyframes orbit{from{transform:rotate(0) translateX(150px) rotate(0)}to{transform:rotate(360deg) translateX(150px) rotate(-360deg)}}
 #giftBox~#gHint{transition:opacity 1s}#giftBox.opened~#gHint{opacity:0}
 .ln{opacity:0;transform:translateY(18px);transition:opacity 1.4s ease,transform 1.4s cubic-bezier(.2,.7,.2,1)}.ln.show{opacity:1;transform:none}
-
-.lantern{position:absolute;bottom:-80px;width:84px;padding:12px 8px;border-radius:16px 16px 22px 22px;font-size:11px;line-height:1.25;color:#fff;background:linear-gradient(#e11d48,#4a0d1d);box-shadow:0 0 40px 8px rgba(244,63,94,.5);animation:lift 9s ease-in forwards;word-break:break-word}
-@keyframes lift{to{bottom:100%;opacity:.15}}
-.chip{padding:.7rem 1.2rem;border-radius:999px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);transition:all .3s;touch-action:manipulation}
-.chip:hover{background:linear-gradient(135deg,rgba(190,18,60,.6),rgba(88,28,135,.4));transform:translateY(-2px)}
-#loveBtn{font-size:6rem;line-height:1;transition:transform .15s;filter:drop-shadow(0 0 22px rgba(244,63,94,.6));touch-action:manipulation}#loveBtn:active{transform:scale(.8)}
-.hd{stroke-dasharray:720;stroke-dashoffset:720;transition:stroke-dashoffset 4.5s ease}
-.fin.show .hd{stroke-dashoffset:0}
-.hf{fill:#be123c;fill-opacity:0;transition:fill-opacity 2s 3.5s}.fin.show .hf{fill-opacity:.4}
-.fin.show .fin-heart{animation:beat 2.4s ease-in-out 5.5s infinite}
-.cta{display:inline-flex;align-items:center;gap:.7rem;padding:1.1rem 2.4rem;border-radius:999px;font-weight:500;color:#fff;background:linear-gradient(135deg,#be123c,#581c87);box-shadow:0 0 0 1px rgba(255,255,255,.28) inset,0 10px 40px -6px rgba(190,18,60,.7);transition:transform .35s;touch-action:manipulation}
-.cta:hover{transform:translateY(-3px) scale(1.05)}
+/* animated gate + hero rose */
+#gateRose{position:relative;transition:transform 2s cubic-bezier(.2,.8,.2,1),filter 2s}
+#gate.burst #gateRose{transform:scale(2.1);filter:brightness(2) drop-shadow(0 0 70px #f43f5e)}
+.late{opacity:0;animation:fd 1.4s ease 2.6s forwards}
+.rip::before,.rip::after{content:"";position:absolute;inset:-8%;border-radius:50%;border:1px solid rgba(244,63,94,.4);animation:ripple 5s ease-out infinite;pointer-events:none}
+.rip::after{animation-delay:2.5s}
+@keyframes ripple{from{transform:scale(.7);opacity:1}to{transform:scale(1.45);opacity:0}}
+.rip .rose{width:100%;height:100%}
+#heroRose{position:absolute;left:50%;top:50%;width:min(92vw,680px);aspect-ratio:1;transform:translate(-50%,-50%);opacity:.3;pointer-events:none;z-index:-1}
+.ltr.sheen{animation:ltr 1.1s cubic-bezier(.2,.8,.2,1) forwards,sh 8s linear infinite}
+.tick{animation:tk .5s ease}@keyframes tk{from{transform:translateY(-10px) scale(1.25);color:#f43f5e}}
+/* themes */
 body[data-t=hot]{--glow:rgba(251,113,133,.6);background:radial-gradient(ellipse at 50% -10%,#9f1239,transparent 60%),linear-gradient(180deg,#1a0205,#3b0610 50%,#5c0a1a);background-attachment:fixed}
 body[data-t=violet]{--glow:rgba(167,139,250,.5);background:radial-gradient(ellipse at 50% -10%,#4c1d95,transparent 60%),linear-gradient(180deg,#05020d,#12062a 50%,#1f0838);background-attachment:fixed}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01s!important}.rv,.ltr,.fade,.late,.letter p,.ln{opacity:1;transform:none}.rose .p{opacity:1;transform:none}.hd{stroke-dashoffset:0}}
-
-/* COUNTDOWN LOCK */
-#wait{position:fixed;inset:0;z-index:120;background:radial-gradient(circle at 50% 40%,#2a0612,#000 72%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:1.5rem;overflow-y:auto;transition:opacity 1.6s ease,visibility 1.6s,transform 1.6s}
-#wait.gone{opacity:0;visibility:hidden;transform:scale(1.1)}
-body.waiting #gate{visibility:hidden}
-body.waiting .late{animation-play-state:paused}
-.tbox{min-width:64px;padding:.9rem .6rem;border-radius:1.2rem}
-@media(min-width:640px){.tbox{min-width:92px;padding:1.2rem .8rem}}
-.tbox b{display:block;font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;font-size:2.2rem;line-height:1;color:#fff;text-shadow:0 0 22px rgba(244,63,94,.7)}
-@media(min-width:640px){.tbox b{font-size:3.4rem}}
-.tbox span{display:block;margin-top:.4rem;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(253,205,218,.7)}
+/* wishes */
+.st{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;animation:tw 3s ease-in-out infinite}
+.st.big{width:7px;height:7px;box-shadow:0 0 14px 4px #f43f5e}
+.lantern{position:absolute;bottom:-80px;width:84px;padding:12px 8px;border-radius:16px 16px 22px 22px;font-size:11px;line-height:1.25;color:#fff;background:linear-gradient(#e11d48,#4a0d1d);box-shadow:0 0 44px 10px rgba(244,63,94,.55);animation:lift 9s ease-in forwards,sway 3s ease-in-out infinite;word-break:break-word}
+@keyframes lift{to{bottom:100%;opacity:.15}}@keyframes sway{50%{transform:translateX(16px) rotate(4deg)}}
+/* cute extras + finale */
+.chip{padding:.7rem 1.2rem;border-radius:999px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);transition:all .3s}
+.chip:hover,.chip.on{background:linear-gradient(135deg,rgba(190,18,60,.6),rgba(88,28,135,.4));transform:translateY(-2px)}
+#loveBtn{font-size:6rem;line-height:1;transition:transform .15s;filter:drop-shadow(0 0 22px rgba(244,63,94,.6))}#loveBtn:active{transform:scale(.8)}
+.hd{stroke-dasharray:720;stroke-dashoffset:720;transition:stroke-dashoffset 4.5s ease}
+.fin.show .hd{stroke-dashoffset:0}
+.hf{fill:#be123c;fill-opacity:0;transition:fill-opacity 2s 3.5s}
+.fin.show .hf{fill-opacity:.4}
+.fin.show svg.heart{animation:beat 2.4s ease-in-out 5.5s infinite}
+.rv.show .bl .p{animation-play-state:running}
+#flash{position:fixed;inset:0;pointer-events:none;z-index:55;opacity:0;background:radial-gradient(circle,rgba(244,63,94,.55),transparent 62%)}
+#flash.on{animation:fl2 1.6s ease-out}@keyframes fl2{20%{opacity:1}100%{opacity:0}}
+.rose.gather .p{animation:gather 2.4s cubic-bezier(.2,.8,.2,1) both}
+@keyframes gather{from{transform:translateY(-150px) rotate(170deg) scale(.45);opacity:0}55%{opacity:1}}
+#gateRose .rose{transition:filter 1.6s}
+#gateRose.lit .rose{filter:drop-shadow(0 0 38px rgba(244,63,94,.95)) drop-shadow(0 0 10px rgba(255,255,255,.35))}
+.cta{position:relative;display:inline-flex;align-items:center;gap:.7rem;padding:1.1rem 2.5rem;border-radius:999px;font-weight:500;letter-spacing:.02em;color:#fff;background:linear-gradient(135deg,#be123c,#581c87);box-shadow:0 0 0 1px rgba(255,255,255,.28) inset,0 10px 40px -6px rgba(190,18,60,.7);overflow:hidden;transition:transform .35s;animation:ctaG 3s ease-in-out infinite}
+.cta::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.4) 50%,transparent 65%);transform:translateX(-120%);animation:ctaS 3.5s ease-in-out infinite}
+.cta:hover{transform:translateY(-3px) scale(1.05)}
+.cta:focus-visible{outline:2px solid #f3a9bd;outline-offset:4px}
+.cta i{animation:beat 1.8s ease-in-out infinite}
+@keyframes ctaG{50%{box-shadow:0 0 0 1px rgba(255,255,255,.3) inset,0 14px 64px -4px rgba(244,63,94,.95)}}
+@keyframes ctaS{50%,100%{transform:translateX(120%)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01s!important}.rv,.ltr,.fade,.letter p{opacity:1;transform:none}.rose .p{opacity:1;transform:none}}
+html.birthday-countdown-active,html.birthday-countdown-active body{overflow:hidden}
+html.birthday-countdown-active body>:not(#birthday-countdown){visibility:hidden}
+#birthday-countdown{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;overflow:hidden;padding:1.5rem;background:radial-gradient(ellipse at 50% 42%,#17130e 0,#090807 48%,#030303 100%);color:#f5ead0;text-align:center;opacity:1;transition:opacity 1.1s ease,transform 1.1s ease}
+html.birthday-countdown-active #birthday-countdown{display:flex}
+#birthday-countdown.is-leaving{opacity:0;transform:scale(1.025);pointer-events:none}
+.countdown-glow{position:absolute;width:min(80vw,38rem);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(190,155,92,.12),transparent 68%);pointer-events:none}
+.countdown-stars{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.countdown-stars::before,.countdown-stars::after{content:"";position:absolute;inset:-50%;background-image:radial-gradient(1px 1px at 12% 20%,rgba(255,235,190,.8) 50%,transparent 100%),radial-gradient(1px 1px at 32% 72%,rgba(255,255,255,.65) 50%,transparent 100%),radial-gradient(1.5px 1.5px at 68% 28%,rgba(225,192,127,.8) 50%,transparent 100%),radial-gradient(1px 1px at 88% 64%,rgba(255,255,255,.7) 50%,transparent 100%);background-size:340px 290px;opacity:.65;animation:countdown-drift 36s linear infinite}
+.countdown-stars::after{background-position:150px 110px;opacity:.32;animation-duration:52s;animation-direction:reverse}
+@keyframes countdown-drift{to{transform:translate3d(45px,35px,0)}}
+.countdown-card{position:relative;width:min(100%,48rem);padding:clamp(1.5rem,5vw,3.5rem) clamp(1rem,4vw,2.5rem);border:1px solid rgba(218,190,136,.25);border-radius:2rem;background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.012));box-shadow:0 30px 100px rgba(0,0,0,.55),inset 0 1px rgba(255,255,255,.07);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.countdown-kicker{color:#c9a96e;font-size:.7rem;letter-spacing:.34em;text-transform:uppercase}
+.countdown-title{margin:1rem auto 0;color:#f4ead6;font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2rem,6vw,3.5rem);font-weight:500;line-height:1.05}
+.countdown-copy{margin:1rem auto 0;color:rgba(245,234,208,.66);font-size:clamp(.85rem,2.5vw,1rem);font-weight:300}
+.countdown-units{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(.5rem,2vw,1rem);margin:clamp(2rem,7vw,3.25rem) auto}
+.countdown-unit{padding:clamp(.8rem,3vw,1.25rem) .3rem;border:1px solid rgba(218,190,136,.17);border-radius:1rem;background:rgba(0,0,0,.2)}
+.countdown-number{display:block;color:#f4e5c4;font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(2rem,8vw,4rem);font-variant-numeric:tabular-nums;line-height:1;text-shadow:0 0 26px rgba(218,190,136,.2)}
+.countdown-label{display:block;margin-top:.65rem;color:rgba(245,234,208,.48);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase}
+.countdown-note{margin:0;color:rgba(245,234,208,.7);font-size:clamp(.75rem,2vw,.9rem);font-weight:300}
+@media(max-width:420px){.countdown-card{border-radius:1.4rem}.countdown-label{font-size:.54rem;letter-spacing:.12em}}
+@media(prefers-reduced-motion:reduce){.countdown-stars::before,.countdown-stars::after{animation:none}}
 </style>
+<script>
+const birthdayUnlockAt = new Date(2026, 9, 18, 0, 0, 0, 0);
+if (Date.now() < birthdayUnlockAt.getTime()) {
+  document.documentElement.classList.add('birthday-countdown-active');
+}
+</script>
 </head>
-<body class="lock waiting">
-<div id="progress"></div>
+<body class="lock">
+<div id="birthday-countdown" role="dialog" aria-modal="true" aria-labelledby="countdown-title" aria-hidden="true">
+  <div class="countdown-glow" aria-hidden="true"></div>
+  <div class="countdown-stars" aria-hidden="true"></div>
+  <div class="countdown-card">
+    <p class="countdown-kicker">A moment made just for you</p>
+    <h1 id="countdown-title" class="countdown-title">Something special is waiting for you, Rumaisa...</h1>
+    <p class="countdown-copy">The night is holding its breath.</p>
+    <div class="countdown-units" aria-label="Time remaining" aria-live="off">
+      <div class="countdown-unit"><span class="countdown-number" id="countdown-days">0</span><span class="countdown-label">Days</span></div>
+      <div class="countdown-unit"><span class="countdown-number" id="countdown-hours">00</span><span class="countdown-label">Hours</span></div>
+      <div class="countdown-unit"><span class="countdown-number" id="countdown-minutes">00</span><span class="countdown-label">Minutes</span></div>
+      <div class="countdown-unit"><span class="countdown-number" id="countdown-seconds">00</span><span class="countdown-label">Seconds</span></div>
+    </div>
+    <p class="countdown-note">Hold on tight! The surprise unlocks on October 18th at midnight.</p>
+  </div>
+</div>
+<script>
+(() => {
+  const overlay = document.getElementById('birthday-countdown');
+  if (!document.documentElement.classList.contains('birthday-countdown-active')) return;
+
+  overlay.setAttribute('aria-hidden', 'false');
+  const units = {
+    days: document.getElementById('countdown-days'),
+    hours: document.getElementById('countdown-hours'),
+    minutes: document.getElementById('countdown-minutes'),
+    seconds: document.getElementById('countdown-seconds')
+  };
+  let timer;
+
+  function updateCountdown() {
+    const secondsLeft = Math.ceil((birthdayUnlockAt.getTime() - Date.now()) / 1000);
+    if (secondsLeft <= 0) {
+      clearInterval(timer);
+      overlay.setAttribute('aria-hidden', 'true');
+      overlay.inert = true;
+      overlay.classList.add('is-leaving');
+      setTimeout(() => {
+        document.documentElement.classList.remove('birthday-countdown-active');
+        overlay.remove();
+      }, 1100);
+      return;
+    }
+
+    const days = Math.floor(secondsLeft / 86400);
+    const hours = Math.floor((secondsLeft % 86400) / 3600);
+    const minutes = Math.floor((secondsLeft % 3600) / 60);
+    const seconds = secondsLeft % 60;
+    units.days.textContent = String(days);
+    units.hours.textContent = String(hours).padStart(2, '0');
+    units.minutes.textContent = String(minutes).padStart(2, '0');
+    units.seconds.textContent = String(seconds).padStart(2, '0');
+  }
+
+  updateCountdown();
+  timer = setInterval(updateCountdown, 1000);
+})();
+</script>
+<div id="progress"></div><div id="flash"></div>
 <canvas id="fx"></canvas>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
-<linearGradient id="pA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e11d48"/><stop offset=".5" stop-color="#5b0a24"/><stop offset="1" stop-color="#0c0206"/></linearGradient>
-<linearGradient id="pB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f43f5e"/><stop offset=".5" stop-color="#7a1030"/><stop offset="1" stop-color="#14040a"/></linearGradient>
-<linearGradient id="pC" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fb7185"/><stop offset=".5" stop-color="#9f1239"/><stop offset="1" stop-color="#1a0509"/></linearGradient>
-</defs></svg>
+<radialGradient id="rg" cx="50%" cy="100%" r="115%"><stop offset="0" stop-color="#080105"/><stop offset=".5" stop-color="#26071a"/><stop offset="1" stop-color="#701329"/></radialGradient></defs></svg>
 <div class="orb" style="width:420px;height:420px;background:#9f1239;opacity:.3;top:-100px;left:-120px"></div>
 <div class="orb" style="width:460px;height:460px;background:#4c1d95;opacity:.28;bottom:-140px;right:-140px;animation-delay:-7s"></div>
+<div class="orb" style="width:300px;height:300px;background:#7f1d1d;opacity:.22;top:45%;left:55%;animation-delay:-12s"></div>
 
-<div id="wait">
-  <div id="waitRose" class="w-40 h-40 sm:w-52 sm:h-52"></div>
-  <p class="script text-4xl sm:text-5xl mt-4">Rumaisa, your surprise is waiting 🖤</p>
-  <p class="serif italic text-xl sm:text-2xl text-rose-100/90 mt-3">Open your surprise on 18 October, at 12:00 AM</p>
-  <div class="flex gap-2 sm:gap-4 mt-8" role="timer" aria-live="off">
-    <div class="tbox glass"><b id="tD">00</b><span>Days</span></div>
-    <div class="tbox glass"><b id="tH">00</b><span>Hours</span></div>
-    <div class="tbox glass"><b id="tM">00</b><span>Minutes</span></div>
-    <div class="tbox glass"><b id="tS">00</b><span>Seconds</span></div>
-  </div>
-  <p class="text-rose-200/60 font-light mt-8 text-sm">Keep this page open, or come back at midnight. It will open by itself. 🤲</p>
-  <p class="script text-3xl mt-3">From Ahmad, with all his love</p>
-</div>
-
+<!-- Gate -->
 <div id="gate">
   <div id="gateRose" class="w-56 h-56 sm:w-72 sm:h-72"></div>
-  <p class="script text-5xl mt-4 late">For my Rumaisa</p>
-  <p class="serif italic text-xl text-rose-200/80 late" style="animation-delay:3.4s">18 October 2026 · from Ahmad, with all his love</p>
-  <button id="bloomBtn" class="btn glass hot late rounded-full px-9 py-4 mt-6 font-medium flex items-center gap-2" style="animation-delay:4s"><i data-lucide="flower-2" class="w-5 h-5"></i> Tap to enter 🖤</button>
+  <p class="script text-5xl mt-4 late">For my Rumaisa</p><p class="serif italic text-xl text-rose-200/80 late" style="animation-delay:3.6s">18 October 2026 · from Ahmad, with all his love</p>
+  <button id="bloomBtn" class="btn glass hot late rounded-full px-9 py-4 mt-6 font-medium flex items-center gap-2" style="animation-delay:4.4s"><i data-lucide="flower-2" class="w-5 h-5"></i> Tap to enter 🖤</button>
 </div>
 
-<button id="music" class="glass btn fixed right-4 z-50 flex items-center gap-3 rounded-full pl-4 pr-5 py-2.5 text-sm" style="top:max(1rem,env(safe-area-inset-top))" aria-label="Toggle music">
-  <i data-lucide="music" class="w-4 h-4 text-rose-300"></i>
+<button id="music" class="glass btn fixed right-4 z-50 flex items-center gap-3 rounded-full pl-4 pr-5 py-2.5 text-sm" style="top:max(1rem,env(safe-area-inset-top))" aria-pressed="false">
+  <span id="musicIcon" class="w-4 h-4 text-rose-300"><i data-lucide="play"></i></span>
   <span class="eq" id="eq"><span></span><span></span><span></span><span></span></span>
   <span id="musicLabel">Play our vibe</span>
 </button>
 <button id="theme" class="glass btn fixed z-50 flex items-center gap-2 rounded-full px-4 py-2.5 text-sm" style="left:1rem;top:max(1rem,env(safe-area-inset-top))" aria-label="Change mood theme"><i data-lucide="palette" class="w-4 h-4 text-rose-300"></i><span id="themeL">Black rose</span></button>
-<audio id="bgAudio" src="song.mp3" loop preload="none"></audio>
+<audio id="backgroundAudio" src="song.mp3" loop preload="none"></audio>
 
-<header class="min-h-screen flex flex-col items-center justify-center text-center px-6 pt-24 pb-10">
-  <div id="heroRose" aria-hidden="true"></div>
-  <p class="script text-3xl md:text-4xl fade" style="animation-delay:.6s">From Ahmad, with all my heart</p>
+<header class="min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20 pb-10">
+  <div id="heroRose" class="rip" aria-hidden="true"></div>
+  <p class="script text-3xl md:text-4xl fade" style="animation-delay:2.4s">From Ahmad, with all my heart</p>
   <h1 id="name" class="serif font-bold text-6xl sm:text-8xl md:text-9xl leading-none mt-4" aria-label="Rumaisa"></h1>
-  <p class="serif italic text-2xl md:text-4xl mt-3 text-rose-100/90 fade" style="animation-delay:1.6s">Happy Birthday, my love 🖤</p>
-  <p class="script text-3xl fade mt-2" style="animation-delay:1.8s">18 October 2026</p>
-  <p id="typer" class="mt-6 text-lg md:text-xl font-light tracking-wide text-rose-100/80 min-h-[2.2em]" aria-live="polite"></p>
-  <div class="fade mt-10" style="animation-delay:2.2s"><a href="#notes" class="cta"><span>Begin your birthday journey</span><i data-lucide="heart" class="w-5 h-5"></i></a></div>
+  <p class="serif italic text-2xl md:text-4xl mt-3 text-rose-100/90 fade" style="animation-delay:3.4s">Happy Birthday, my love 🖤</p>
+  <p class="script text-3xl fade mt-2" style="animation-delay:3.6s">18 October 2026</p>
+  <p id="typer" class="fade mt-6 text-lg md:text-xl font-light tracking-wide text-rose-100/80 min-h-[2.2em]" style="animation-delay:3.8s" aria-live="polite"></p>
+  <div class="fade mt-10" style="animation-delay:4.2s"><a href="#notes" class="cta"><span>Begin your birthday journey</span><i data-lucide="heart" class="w-5 h-5"></i></a></div>
   <a href="#notes" class="mt-12 float text-rose-300/70" aria-label="Scroll down"><i data-lucide="chevrons-down" class="w-7 h-7"></i></a>
 </header>
 
@@ -183,17 +289,17 @@ body.waiting .late{animation-play-state:paused}
   <section id="notes" class="py-20">
     <div class="rv text-center mb-14">
       <h2 class="serif font-bold text-4xl md:text-6xl sheen">You are my whole world</h2>
-      <p class="mt-4 text-rose-200/70 max-w-lg mx-auto font-light">Tap a card to open the reason behind it.</p>
+      <p class="mt-4 text-rose-200/70 max-w-lg mx-auto font-light">Move over a card to feel it breathe. Tap it to open the reason behind it.</p>
     </div>
     <div id="cards" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
   </section>
 
-  <section class="py-16">
+  <section id="garden-s" class="py-16">
     <div class="rv text-center mb-8">
       <h2 class="serif font-bold text-4xl md:text-5xl sheen">Your black rose garden</h2>
-      <p class="mt-3 text-rose-200/70 font-light">Tap below to plant a black rose. Each one carries a whisper from me.</p>
+      <p class="mt-3 text-rose-200/70 font-light">Tap anywhere below to plant a black rose. Each one carries a whisper from me.</p>
     </div>
-    <div class="rv glass max-w-3xl mx-auto rounded-[2rem]"><div id="garden" role="button" tabindex="0" aria-label="Plant a black rose"></div></div>
+    <div class="rv glass max-w-3xl mx-auto"><div id="garden" role="button" tabindex="0" aria-label="Plant a black rose"></div></div>
     <p class="text-center mt-4 text-rose-200/70 font-light"><span id="gc" class="serif text-2xl text-rose-100">0</span> roses planted for you</p>
   </section>
 
@@ -206,19 +312,19 @@ body.waiting .late{animation-play-state:paused}
     </div>
   </section>
 
-  <section class="py-16 text-center">
+  <section id="cake" class="py-16 text-center">
     <div class="rv glass rounded-[2rem] p-8 md:p-12 max-w-xl mx-auto">
       <h2 class="serif font-bold text-3xl md:text-4xl sheen">Whisper a wish to the stars</h2>
       <p class="text-rose-200/70 font-light mt-2">Write it here, Rumaisa. I'll send it up for you, wrapped in a prayer.</p>
       <div id="sky" class="relative h-72 mt-6 rounded-3xl overflow-hidden" style="background:radial-gradient(ellipse at 50% 110%,#7f1d3a,#1a0510 55%,#050205)"></div>
-      <input id="wishIn" maxlength="70" aria-label="Your wish" placeholder="My wish is…" class="mt-5 w-full rounded-full px-6 py-3.5 bg-white/5 border border-white/20 text-center text-rose-50 placeholder-rose-200/40 outline-none focus:border-rose-400" style="font-size:16px">
+      <input id="wishIn" maxlength="70" aria-label="Your wish" placeholder="My wish is..." class="mt-5 w-full rounded-full px-6 py-3.5 bg-white/5 border border-white/20 text-center text-rose-50 placeholder-rose-200/40 outline-none focus:border-rose-400">
       <button onclick="sendWish()" class="btn glass hot rounded-full px-8 py-3.5 mt-4 font-medium inline-flex items-center gap-2"><i data-lucide="sparkles" class="w-5 h-5"></i> Send my wish 🖤</button>
       <p id="wishMsg" class="serif italic text-xl mt-5 min-h-[3.5rem] text-rose-100/90" aria-live="polite"></p>
     </div>
   </section>
 
   <section class="py-16">
-    <div class="rv glass rounded-[2rem] p-8 md:p-14 max-w-3xl mx-auto text-center">
+    <div class="rv glass rounded-[2rem] p-8 md:p-14 max-w-3xl mx-auto text-center relative overflow-hidden">
       <i data-lucide="moon-star" class="w-10 h-10 mx-auto text-rose-300 float"></i>
       <h2 class="serif font-bold text-3xl md:text-4xl mt-5">In every single prayer of mine</h2>
       <p class="serif italic text-2xl md:text-3xl text-rose-100 mt-8 leading-relaxed">“O Allah, keep my Rumaisa happy. Fill her heart with peace, make her paths easy, and take any hardship she faces and give it to me.”</p>
@@ -227,11 +333,12 @@ body.waiting .late{animation-play-state:paused}
     </div>
   </section>
 
+
   <section class="py-16 text-center">
     <div class="rv">
       <button onclick="openLetter()" class="btn glass rounded-3xl px-10 py-10 max-w-md mx-auto block w-full">
         <i data-lucide="gift" class="w-12 h-12 mx-auto text-rose-300 float"></i>
-        <span class="block serif font-bold text-3xl mt-4">One last thing, Rumaisa…</span>
+        <span class="block serif font-bold text-3xl mt-4">One last thing, Rumaisa...</span>
         <span class="block text-sm text-rose-200/70 mt-2 font-light">A letter I wrote with my whole heart. Tap to open.</span>
       </button>
     </div>
@@ -245,7 +352,6 @@ body.waiting .late{animation-play-state:paused}
     <p id="moodMsg" class="serif italic text-2xl mt-6 min-h-[5rem] text-rose-50 transition-opacity duration-500" aria-live="polite">Tell me, my love. I'm always listening.</p>
   </div>
 </section>
-
 <section class="px-5 py-12 text-center">
   <div class="rv">
     <button id="loveBtn" class="beat" aria-label="Send love to Ahmad">🖤</button>
@@ -254,58 +360,56 @@ body.waiting .late{animation-play-state:paused}
     <p id="lm" class="script text-3xl mt-2 min-h-[2.5rem]" aria-live="polite"></p>
   </div>
 </section>
-
 <section class="fin rv px-5 py-24 text-center">
   <div class="max-w-xl mx-auto">
     <svg viewBox="0 0 200 180" class="fin-heart w-72 sm:w-96 mx-auto" aria-hidden="true">
       <path class="hf" d="M100 165C20 105 5 60 35 30C60 5 90 20 100 45C110 20 140 5 165 30C195 60 180 105 100 165Z"/>
-      <path class="hd" d="M100 165C20 105 5 60 35 30C60 5 90 20 100 45C110 20 140 5 165 30C195 60 180 105 100 165Z" fill="none" stroke="#f3a9bd" stroke-width="2.5" stroke-linecap="round"/>
+      <path class="hd" d="M100 165C20 105 5 60 35 30C60 5 90 20 100 45C110 20 140 5 165 30C195 60 180 105 100 165Z" fill="none" stroke="#f3a9bd" stroke-width="2.5" stroke-linecap="round" style="filter:drop-shadow(0 0 8px #f43f5e)"/>
       <text x="100" y="98" text-anchor="middle" font-family="Great Vibes,cursive" font-size="34" fill="#fff">Rumaisa</text>
     </svg>
-    <div class="flex justify-center items-center gap-3"><div class="rs w-16 h-16"></div><div class="rs w-20 h-20"></div><div class="rs w-16 h-16"></div></div>
+    <div class="flex justify-center gap-3 bl"><div class="rs w-16 h-16"></div><div class="rs w-20 h-20 -mt-3"></div><div class="rs w-16 h-16"></div></div>
     <p class="serif italic text-3xl md:text-4xl text-rose-50 mt-8 leading-relaxed">I will love you today, tomorrow, and in every year Allah writes for us.</p>
   </div>
 </section>
-
-<section class="px-5 py-24 text-center">
-  <div class="rv max-w-2xl mx-auto">
-    <h2 class="serif font-bold text-4xl md:text-6xl sheen">A gift only for you</h2>
-    <p class="mt-3 text-rose-200/70 font-light">Open it slowly, Rumaisa.</p>
-    <div id="giftBox" class="relative mx-auto mt-10 w-72 h-[26rem]" role="button" tabindex="0" aria-label="Open your gift">
-      <div class="aura"></div>
-      <div id="giftRose"></div>
-      <svg viewBox="0 0 200 170" class="box absolute bottom-0 left-0 w-full" aria-hidden="true">
-        <defs><linearGradient id="bx" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2a0a16"/><stop offset="1" stop-color="#050105"/></linearGradient>
-        <linearGradient id="rb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f43f5e"/><stop offset="1" stop-color="#881337"/></linearGradient></defs>
-        <ellipse cx="100" cy="160" rx="78" ry="8" fill="#000" opacity=".6"/>
-        <rect x="30" y="70" width="140" height="88" rx="8" fill="url(#bx)" stroke="rgba(255,255,255,.25)"/>
-        <rect x="92" y="70" width="16" height="88" fill="url(#rb)"/>
-        <g transform="rotate(8 141 111)"><rect x="118" y="98" width="46" height="26" rx="4" fill="#ead7e0"/><text x="141" y="116" text-anchor="middle" font-family="Great Vibes,cursive" font-size="15" fill="#4a0d1d">Rumaisa</text></g>
-        <g id="lid"><rect x="22" y="50" width="156" height="30" rx="8" fill="url(#bx)" stroke="rgba(255,255,255,.3)"/><rect x="92" y="50" width="16" height="30" fill="url(#rb)"/>
-        <path d="M100 50C70 18 48 42 72 54Z M100 50C130 18 152 42 128 54Z" fill="url(#rb)"/><circle cx="100" cy="50" r="7" fill="#f43f5e"/></g>
-      </svg>
+  <section id="gift" class="px-5 py-24 text-center">
+    <div class="rv max-w-2xl mx-auto">
+      <h2 class="serif font-bold text-4xl md:text-6xl sheen">A gift only for you</h2>
+      <p class="mt-3 text-rose-200/70 font-light">Open it slowly, Rumaisa.</p>
+      <div id="giftBox" class="relative mx-auto mt-10 w-72 h-[26rem]" role="button" tabindex="0" aria-label="Open your gift">
+        <div class="aura"></div><div class="aura a2"></div>
+        <div id="giftRose"></div>
+        <svg viewBox="0 0 200 170" class="absolute bottom-0 left-0 w-full" aria-hidden="true">
+          <defs><linearGradient id="bx" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2a0a16"/><stop offset="1" stop-color="#050105"/></linearGradient>
+          <linearGradient id="rb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f43f5e"/><stop offset="1" stop-color="#881337"/></linearGradient></defs>
+          <ellipse cx="100" cy="160" rx="78" ry="8" fill="#000" opacity=".6"/>
+          <rect x="30" y="70" width="140" height="88" rx="8" fill="url(#bx)" stroke="rgba(255,255,255,.25)"/>
+          <rect x="92" y="70" width="16" height="88" fill="url(#rb)"/>
+          <g transform="rotate(8 141 111)"><rect x="118" y="98" width="46" height="26" rx="4" fill="#ead7e0"/><text x="141" y="116" text-anchor="middle" font-family="Great Vibes,cursive" font-size="15" fill="#4a0d1d">Rumaisa</text></g>
+          <g id="lid"><rect x="22" y="50" width="156" height="30" rx="8" fill="url(#bx)" stroke="rgba(255,255,255,.3)"/><rect x="92" y="50" width="16" height="30" fill="url(#rb)"/>
+          <path d="M100 50C70 18 48 42 72 54Z M100 50C130 18 152 42 128 54Z" fill="url(#rb)"/><circle cx="100" cy="50" r="7" fill="#f43f5e"/></g>
+        </svg>
+      </div>
+      <p id="gHint" class="script text-3xl -mt-2">Tap the box 🖤</p>
+      <div id="giftMsg" class="mt-8 space-y-5 serif italic text-2xl md:text-3xl text-rose-50 leading-relaxed">
+        <p class="ln">There is no black rose in any garden of this world.</p>
+        <p class="ln">So I made one, only for you, Rumaisa.</p>
+        <p class="ln">May this year be gentler to you than any before it.</p>
+        <p class="ln">May every prayer you have whispered in the dark be answered in the light.</p>
+        <p class="ln">May you always feel as loved as you are, which is more than words can hold.</p>
+        <p class="ln">And may I be the one beside you for every candle still to come.</p>
+        <p class="ln script !not-italic text-5xl md:text-6xl pt-4">Happy Birthday, Rumaisa.<br>With all my love, Ahmad 🖤</p>
+        <div class="ln"><button class="btn glass hot rounded-full px-8 py-3.5 mt-2 font-medium inline-flex items-center gap-2 text-base" onclick="shower()"><i data-lucide="sparkles" class="w-5 h-5"></i> Shower me with petals</button></div>
+      </div>
     </div>
-    <p id="gHint" class="script text-3xl -mt-2">Tap the box 🖤</p>
-    <div id="giftMsg" class="mt-8 space-y-5 serif italic text-2xl md:text-3xl text-rose-50 leading-relaxed">
-      <p class="ln">There is no black rose in any garden of this world.</p>
-      <p class="ln">So I made one, only for you, Rumaisa.</p>
-      <p class="ln">May this year be gentler to you than any before it.</p>
-      <p class="ln">May every prayer you have whispered in the dark be answered in the light.</p>
-      <p class="ln">May you always feel as loved as you are, which is more than words can hold.</p>
-      <p class="ln">And may I be the one beside you for every candle still to come.</p>
-      <p class="ln script not-italic text-5xl md:text-6xl pt-4">Happy Birthday, Rumaisa.<br>With all my love, Ahmad 🖤</p>
-      <div class="ln"><button class="btn glass hot rounded-full px-8 py-3.5 mt-2 font-medium inline-flex items-center gap-2 text-base" onclick="shower()"><i data-lucide="sparkles" class="w-5 h-5"></i> Shower me with petals</button></div>
-    </div>
-  </div>
-</section>
-
-<footer class="text-center px-6 text-rose-200/60 text-sm font-light" style="padding-bottom:3.5rem">
+  </section>
+<footer class="text-center px-6 text-rose-200/60 text-sm font-light" style="padding-bottom:max(3.5rem,env(safe-area-inset-bottom))">
   <p class="script text-5xl">Forever yours, Ahmad</p>
   <p class="serif italic text-xl text-rose-200/80 mt-2">Happy birthday, my life. 🖤</p>
+  <p class="mt-4">Tap anywhere to send her a little love.</p>
 </footer>
 
 <div id="modal" class="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md" role="dialog" aria-modal="true" aria-labelledby="lt" onclick="if(event.target===this)closeLetter()">
-  <div id="sheet" class="glass rounded-[2rem] w-full max-w-2xl max-h-[88vh] flex flex-col" style="background:linear-gradient(160deg,rgba(40,5,16,.97),rgba(20,4,30,.95))">
+  <div id="sheet" class="glass rounded-[2rem] w-full max-w-2xl max-h-[88vh] flex flex-col" style="background:linear-gradient(160deg,rgba(40,5,16,.96),rgba(20,4,30,.92))">
     <div class="flex items-center justify-between px-7 pt-6 pb-3">
       <span class="text-3xl beat">💌</span>
       <button onclick="closeLetter()" class="btn rounded-full p-2 bg-white/10 hover:bg-white/20" aria-label="Close letter"><i data-lucide="x" class="w-5 h-5"></i></button>
@@ -316,189 +420,213 @@ body.waiting .late{animation-play-state:paused}
       <p>You are my best friend, the one person I can be completely myself with. You are also the love of my life, the one my heart chose without asking permission and has never once regretted. When you laugh, the day fixes itself. When you're quiet, I just want to sit next to you until you feel okay again.</p>
       <p><em>Without you, I am incomplete.</em> Not in a dramatic way, but in the quiet, honest way that a house is incomplete without light. I need you the way I need air, the way I need prayer. You are not a part of my life, Rumi. You are the reason the rest of it makes sense.</p>
       <p>I'm sorry for every time I didn't say enough. I love you in ways I fumble to explain. I love your heart, your softness, your strength, even the days you doubt yourself. Especially those days, because I wish you could see yourself through my eyes, even for a minute.</p>
-      <p>So here is my promise on your birthday: I will keep choosing you. In the easy days and the heavy ones. In every year Allah writes for us. And I will keep praying, every day, that you never know a sadness that lasts, that your heart is kept safe, and that I can spend the rest of my life making you feel cherished.</p>
-      <p>Happy Birthday, my sweet girl. I love you more than all the stars in the night sky.</p>
-      <p class="script text-4xl text-right mt-6">Forever &amp; Always,<br>Ahmad 🖤</p>
+      <p>So here is my promise on your birthday: I will keep choosing you. In the easy days and the heavy ones. In every year Allah writes for us. And I will keep praying, every day, that you never know a sadness I can't stand beside.</p>
+      <p>Happy Birthday, my Rumaisa. You are loved more than you will ever know. 🖤</p>
+      <p class="text-right"><span class="script text-5xl">Forever yours,<br>Ahmad</span></p>
     </div>
   </div>
 </div>
 
 <script>
-// ---------- ROSE (layered petals, spiral heart) ----------
-var PETAL="M50 50C27 42 26 10 50 6C74 10 73 42 50 50Z";
-function layer(n,scale,off,fill,delay){
-  var g="";
-  for(var i=0;i<n;i++){
-    var a=off+i*360/n;
-    g+='<path d="'+PETAL+'" transform="rotate('+a+' 50 50) translate(50 50) scale('+scale+') translate(-50 -50)" fill="url(#'+fill+')" stroke="rgba(255,170,195,.35)" stroke-width=".8"/>';
-  }
-  return '<g class="p" style="animation-delay:'+delay+'s">'+g+'</g>';
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const $=id=>document.getElementById(id);
+const PET='M0 0C-16 -6 -26 -22 -20 -34C-14 -44 -5 -42 0 -38C5 -42 14 -44 20 -34C26 -22 16 -6 0 0Z';
+const rose=()=>{let s='<svg viewBox="0 0 100 100" class="rose" aria-hidden="true">';
+ [[7,1,0],[6,.82,25],[5,.64,12],[4,.46,40],[3,.3,20]].forEach(([n,sc,off],i)=>{
+  for(let j=0;j<n;j++){const a=j*360/n+off;
+   s+=`<g transform="rotate(${a} 50 50)"><g class="p" style="animation-delay:${(i*.3+j*.05).toFixed(2)}s"><path d="${PET}" transform="translate(50 52) scale(${sc})" fill="url(#rg)" stroke="rgba(251,113,133,.5)" stroke-width="${(.7/sc).toFixed(2)}" stroke-linejoin="round"/></g></g>`}});
+ return s+'<path d="M50 50m-3 0a3 3 0 1 1 3 3a6 6 0 0 1-8-7a9 9 0 0 1 13 3" fill="none" stroke="rgba(251,113,133,.55)" stroke-width=".9" stroke-linecap="round"/></svg>'};
+const gr=$('gateRose');gr.innerHTML=rose();gr.classList.add('rip');gr.firstChild.classList.add('go','gather');setTimeout(()=>gr.classList.add('lit'),4200);
+function gp(n,b){if(reduce)return;for(let i=0;i<n;i++){const p=document.createElement('div');p.className='petal';p.style.zIndex=101;p.style.left=Math.random()*100+'vw';{const z=10+Math.random()*14;p.style.width=z+'px';p.style.height=z*1.4+'px'}p.style.setProperty('--dx',(Math.random()*160-80)+'px');p.style.animationDuration=(b?3:6)+Math.random()*3+'s';document.body.appendChild(p);setTimeout(()=>p.remove(),10000)}}
+gp(8);const gi=setInterval(()=>{if($('gate').classList.contains('gone'))clearInterval(gi);else gp(2)},1200);
+// gate
+$('bloomBtn').onclick=()=>{
+ $('gate').classList.add('burst');$('bloomBtn').style.visibility='hidden';gp(40,1);
+ audio.play().catch(()=>{});
+ setTimeout(()=>{$('gate').classList.add('gone');document.body.classList.remove('lock');petals(30);startHero()},2200);
+};
+// hero
+function startHero(){document.body.classList.add('ready');$('heroRose').firstChild.classList.add('go');
+ const nm=$('name');nm.innerHTML='';
+ [...'Rumaisa'].forEach((c,i)=>{const s=document.createElement('span');s.className='ltr sheen';s.textContent=c;s.style.animationDelay=.2+i*.16+'s';nm.appendChild(s)});
+ nm.style.perspective='800px';
+ const lines=['My Best Friend','My Love','My Heart','My Entire World'];const tp=$('typer');
+ if(reduce){tp.textContent=lines.join(', ');return}
+ let li=0,ci=0,del=false;
+ (function type(){const s=lines[li];tp.textContent=s.slice(0,ci);
+  if(!del&&ci<s.length){ci++;setTimeout(type,90)}else if(!del){del=true;setTimeout(type,1500)}
+  else if(ci>0){ci--;setTimeout(type,40)}else{del=false;li=(li+1)%lines.length;setTimeout(type,300)}})();
 }
-function makeRose(cls){
-  return '<svg class="rose '+(cls||'')+'" viewBox="0 0 100 100" aria-hidden="true">'+
-    layer(7,1,0,'pA',0)+layer(6,.78,25,'pB',.25)+layer(5,.56,10,'pC',.5)+layer(4,.34,40,'pB',.75)+
-    '<g class="p" style="animation-delay:1s"><circle cx="50" cy="50" r="7" fill="#be123c"/><path d="M50 50m-1 0a1 1 0 1 1 2 0a3 3 0 1 1-4 0a5 5 0 1 1 7 0" fill="none" stroke="#ffd1dc" stroke-width="1" stroke-linecap="round" opacity=".9"/></g></svg>';
-}
-function $(id){return document.getElementById(id)}
-
-document.addEventListener('DOMContentLoaded',function(){
-  try{lucide.createIcons()}catch(e){}
-  $('gateRose').innerHTML=makeRose('go spin');
-  $('heroRose').innerHTML=makeRose('go spin');
-  $('giftRose').innerHTML=makeRose('go');
-  document.querySelectorAll('.rs').forEach(function(el){el.innerHTML=makeRose()});
-
-  $('name').innerHTML="Rumaisa".split('').map(function(l,i){return '<span class="ltr sheen" style="animation-delay:'+(.2+i*.1)+'s">'+l+'</span>'}).join('');
-  var txt="Rumaisa 🖤 My Love 🖤 Happy Birthday 🖤 My Black Rose 🖤 Forever Yours 🖤 ";
-  $('mq').innerHTML='<span class="whitespace-nowrap">'+txt.repeat(4)+'</span><span class="whitespace-nowrap">'+txt.repeat(4)+'</span>';
-
-  $('bloomBtn').addEventListener('click',function(){
-    var g=$('gate');g.classList.add('burst');
-    setTimeout(function(){g.classList.add('gone');document.body.classList.remove('lock');document.body.classList.add('ready');startTyping();tryPlay()},700);
-  });
-
-  var cards=[["Your Kindness","The quiet way you care for everyone around you."],["Your Laugh","My absolute favorite sound in the whole universe."],["Your Eyes","I see my entire future reflected right inside them."],["Your Peace","Being near you feels like coming home after a storm."],["Your Heart","Pure, rare, and completely irreplaceable to me."],["Your Soul","My soulmate, best friend, and light in the dark."]];
-  $('cards').innerHTML=cards.map(function(c){return '<div class="tilt" tabindex="0" role="button" aria-label="'+c[0]+'"><div class="flip-in">'+
-    '<div class="face front crystal"><div class="gem"><i data-lucide="sparkles" class="w-6 h-6 text-rose-200"></i></div><h3 class="serif font-bold text-2xl text-center">'+c[0]+'</h3><p class="text-xs text-rose-200/60 text-center mt-2">Tap to unveil</p><div class="wm">'+makeRose()+'</div></div>'+
-    '<div class="face back crystal text-center"><p class="serif italic text-xl text-rose-100">'+c[1]+'</p></div></div></div>'}).join('');
-  try{lucide.createIcons()}catch(e){}
-  document.querySelectorAll('.tilt').forEach(function(t){
-    t.addEventListener('click',function(){t.classList.toggle('open')});
-    t.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();t.classList.toggle('open')}});
-  });
-
-  // garden
-  var garden=$('garden'),gCount=0;
-  function plant(x){
-    var p=document.createElement('div');p.className='plant';p.style.left=x+'px';
-    p.innerHTML='<div class="bud">'+makeRose('go')+'</div><div class="stem"></div>';
-    garden.appendChild(p);
-    setTimeout(function(){p.querySelector('.stem').style.height=(70+Math.random()*60)+'px'},50);
-    $('gc').textContent=++gCount;
-    var w=document.createElement('div');w.className='whisper';w.style.left=Math.max(6,x-40)+'px';w.style.bottom='150px';
-    w.textContent=["I love you 🖤","You are my peace","Forever yours","My Rumi"][gCount%4];
-    garden.appendChild(w);setTimeout(function(){w.remove()},3200);
-  }
-  garden.addEventListener('click',function(e){plant(Math.min(Math.max(e.clientX-garden.getBoundingClientRect().left,32),garden.clientWidth-32))});
-  garden.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();plant(Math.random()*(garden.clientWidth-80)+40)}});
-
-  // gift
-  var gb=$('giftBox');
-  function openGift(){
-    if(gb.classList.contains('opened'))return;
-    gb.classList.add('opened');
-    document.querySelectorAll('#giftMsg .ln').forEach(function(l,i){setTimeout(function(){l.classList.add('show')},1200+i*900)});
-  }
-  gb.addEventListener('click',openGift);
-  gb.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();openGift()}});
-
-  // moods
-  var moods=[["Happy 😊","Your happiness is literally all I live for!"],["Tired 😴","Rest well my love, I'm holding you close in spirit."],["Loved 💖","Good! Because you are loved more than you know."],["Emotional 🥺","I'm right here beside you, always and forever."]];
-  var me=$('moods');
-  moods.forEach(function(m){var b=document.createElement('button');b.className='chip';b.textContent=m[0];b.addEventListener('click',function(){fadeText('moodMsg',m[1])});me.appendChild(b)});
-
-  // love button
-  var lc=0;
-  $('loveBtn').addEventListener('click',function(){$('lc').textContent=++lc;$('lm').textContent="Hug sent to Ahmad! 🖤";spawnHeart()});
-
-  // reveal
-  var els=document.querySelectorAll('.rv');
-  if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('show');io.unobserve(en.target)}})},{threshold:.12});
-    els.forEach(function(el){io.observe(el)});
-  }else els.forEach(function(el){el.classList.add('show')});
-
-  // music
-  var audio=$('bgAudio'),btn=$('music');
-  audio.addEventListener('error',function(){btn.style.display='none'},true);
-  btn.addEventListener('click',function(){
-    if(audio.paused){audio.play().then(setPlaying).catch(function(){btn.style.display='none'})}
-    else{audio.pause();$('eq').classList.remove('play');$('musicLabel').textContent='Play our vibe'}
-  });
-
-  // theme
-  var t=0,th=['','hot','violet'],tl=['Black rose','Rose hot','Deep violet'];
-  $('theme').addEventListener('click',function(){t=(t+1)%3;document.body.setAttribute('data-t',th[t]);$('themeL').textContent=tl[t]});
+$('mq').innerHTML=('<span class="px-6">Rumaisa 🖤</span><span class="px-6">Rumi ✦</span><span class="px-6">my love 🖤</span><span class="px-6">my everything ✦</span>').repeat(8);
+// cards
+const notes=[
+ {i:'sun',t:'You are my peace',q:'In a world that never stops, you are the one place my heart finally rests.',b:'No matter how loud the day gets, one message from you and everything inside me goes quiet and safe.'},
+ {i:'smile',t:'Your smile',q:'I would cross every distance just to see it once.',b:'It does something to me that I have no word for in any language. It feels like home.'},
+ {i:'hand-heart',t:'Best friend first',q:'Before love, there was you, my person.',b:'You listened, you stayed, you understood. Everything beautiful between us was built on that friendship.'},
+ {i:'sparkles',t:'Your heart',q:'Soft enough to heal people, strong enough to carry them.',b:'You give so much of yourself to everyone. I just want to be the one who gives it all back to you.'},
+ {i:'infinity',t:'Always',q:'Even a thousand years wouldn’t be enough with you.',b:'If time were mine to spend, I would spend all of it beside you, and still ask for more.'},
+ {i:'moon',t:'My daily prayer',q:'Every night, your name comes with my prayers.',b:'Whatever I ask Allah for, it begins and ends with you being happy, safe and loved.'},
+ {i:'flower-2',t:'Your softness',q:'The gentlest thing I know is also the bravest.',b:'You make kindness look effortless, and you make me want to be better every single day.'},
+ {i:'star',t:'My luckiest day',q:'The day you came into my life, everything changed.',b:'I don’t know what I did to deserve you, but I thank Allah for it every day.'},
+ {i:'home',t:'My home',q:'Home was never a place. It was always you.',b:'Wherever you are, that’s where my heart wants to be.'}
+];
+notes.forEach((n,k)=>{
+ const w=document.createElement('div');w.className='rv cw';w.style.transitionDelay=(k%3)*140+'ms';w.style.setProperty('--sd',(k*.7)+'s');w.style.setProperty('--d',(k*.5)+'s');
+ w.innerHTML=`<div class="tilt" tabindex="0" role="button" aria-label="Reveal note: ${n.t}"><div class="flip-in"><div class="face front crystal items-center text-center"><span class="tw" style="top:16px;right:20px">✦</span><span class="tw" style="bottom:20px;left:22px;animation-delay:1.2s">✧</span><div class="wm">${rose()}</div><div class="gem"><i data-lucide="${n.i}" class="w-7 h-7 text-rose-50"></i></div><h3 class="serif font-bold text-3xl">${n.t}</h3><p class="text-xs text-rose-200/60 mt-4 font-light">tap to open</p></div><div class="face back crystal"><span class="tw" style="top:16px;left:20px">✦</span><span class="tw" style="bottom:18px;right:22px;animation-delay:1.4s">✧</span><p class="serif italic text-2xl leading-snug text-rose-50">“${n.q}”</p><p class="text-sm font-light text-rose-100/80 mt-4 leading-relaxed">${n.b}</p></div></div></div>`;
+ const t=w.firstChild;
+ t.addEventListener('pointermove',e=>{if(e.pointerType==='touch'||reduce)return;const r=t.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+  t.style.setProperty('--ry',(x-.5)*14+'deg');t.style.setProperty('--rx',(.5-y)*14+'deg');
+  t.querySelectorAll('.face').forEach(f=>{f.style.setProperty('--mx',x*100+'%');f.style.setProperty('--my',y*100+'%')})});
+ t.addEventListener('pointerleave',()=>{t.style.setProperty('--ry','0deg');t.style.setProperty('--rx','0deg')});
+ const tog=()=>{t.classList.toggle('open');if(t.classList.contains('open')){const r=t.getBoundingClientRect();hearts(r.left+r.width/2,r.top+60,6)}};
+ t.onclick=tog;t.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();tog()}};
+ $('cards').appendChild(w);
 });
-
-function setPlaying(){$('eq').classList.add('play');$('musicLabel').textContent='Playing our vibe'}
-function tryPlay(){var a=$('bgAudio');try{a.play().then(setPlaying).catch(function(){})}catch(e){}}
-function fadeText(id,msg){var el=$(id);el.style.opacity=0;setTimeout(function(){el.textContent=msg;el.style.opacity=1},300)}
-
-function startTyping(){
-  var lines=["To the most beautiful girl in the world...","Every day with you is a blessing from Allah...","You make my world complete 🖤"],li=0,ci=0,el=$('typer');
-  function type(){var s=Array.from(lines[li]);if(ci<s.length){ci++;el.textContent=s.slice(0,ci).join('');setTimeout(type,70)}else setTimeout(erase,2200)}
-  function erase(){var s=Array.from(lines[li]);if(ci>0){ci--;el.textContent=s.slice(0,ci).join('');setTimeout(erase,35)}else{li=(li+1)%lines.length;setTimeout(type,400)}}
-  type();
+// garden
+const whispers=['You are my peace.','Forever, my love.','My heart is yours.','Only you.','Always you.','You are my prayer.','My favourite person.','Home is you.','Mine, always.','All of me, for you.'];
+let gc=0;
+function plant(x){
+ const g=$('garden'),p=document.createElement('div');p.className='plant';p.style.left=x+'px';
+ const h=70+Math.random()*120;p.innerHTML=`<div class="stem"></div>`+rose();g.appendChild(p);
+ requestAnimationFrame(()=>requestAnimationFrame(()=>{p.firstChild.style.height=h+'px';setTimeout(()=>p.querySelector('.rose').classList.add('go'),900)}));
+ gc++;$('gc').textContent=gc;
+ const w=document.createElement('div');w.className='whisper';w.textContent=whispers[gc%whispers.length];w.style.left=Math.max(6,x-50)+'px';w.style.bottom=h+60+'px';g.appendChild(w);setTimeout(()=>w.remove(),3300);
+ if(gc>14)g.querySelector('.plant').remove();
 }
-
-var reasons=["The gentle way you speak when I've had a hard day.","How your smile instantly brightens up everything around me.","Your pure heart and how deeply you care for people.","The way you make me feel safe, loved, and understood.","Because praying for you brings so much peace to my soul."],ri=0;
-function nextReason(){ri=(ri+1)%reasons.length;fadeText('reason',reasons[ri])}
-
-function sendWish(){
-  var i=$('wishIn');if(!i.value.trim())return;
-  var l=document.createElement('div');l.className='lantern';l.style.left=(Math.random()*60+10)+'%';l.textContent=i.value.trim();
-  $('sky').appendChild(l);setTimeout(function(){l.remove()},9500);
-  $('wishMsg').textContent="Your wish is floating up to the heavens, wrapped in my prayers. 🌟";i.value='';
+$('garden').onclick=e=>{const r=$('garden').getBoundingClientRect();plant(e.clientX-r.left);hearts(e.clientX,e.clientY,3)};
+$('garden').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();plant(30+Math.random()*($('garden').clientWidth-60))}};
+// reasons
+const reasons=['Because you make ordinary days feel like celebrations.','Because your laugh is my favourite sound in the world.','Because you see the good in people, even when it’s hard to find.','Because with you, I never have to pretend.','Because your prayers and mine always seem to meet.','Because you are gentle with the world, even when it isn’t gentle with you.','Because you make me want to be a better man.','Because you feel like home.','Because even your silence is comforting to me.','Because I thank Allah for you more than I can say.'];
+let ri=-1;
+function nextReason(){const el=$('reason');let n;do{n=Math.floor(Math.random()*reasons.length)}while(n===ri);ri=n;
+ el.style.opacity=0;setTimeout(()=>{el.textContent=reasons[n];el.style.opacity=1},350);
+ const r=el.getBoundingClientRect();hearts(r.left+r.width/2,r.top+r.height,6)}
+// wishes
+const sky=$('sky');for(let i=0;i<45;i++){const t=document.createElement('i');t.className='st';t.style.left=Math.random()*100+'%';t.style.top=Math.random()*85+'%';t.style.animationDelay=Math.random()*3+'s';sky.appendChild(t)}
+const wr=['I read it with my whole heart, Rumaisa. I will spend my life making it come true. 🖤','Sent. Allah is the best listener, and I will be praying beside you. 🤲','Up it goes, my love. Even the stars are smiling at you tonight. ✨'];let wi=0;
+function sendWish(){const v=$('wishIn').value.trim();if(!v){$('wishMsg').textContent='Write something sweet first, my love. 🖤';return}
+ const l=document.createElement('div');l.className='lantern';l.textContent=v;l.style.left=15+Math.random()*50+'%';sky.appendChild(l);
+ setTimeout(()=>{l.remove();const st=document.createElement('i');st.className='st big';st.style.left=l.style.left;st.style.top=8+Math.random()*30+'%';st.title=v;sky.appendChild(st)},9000);
+ $('wishIn').value='';$('wishMsg').textContent=wr[wi++%wr.length];const r=sky.getBoundingClientRect();hearts(r.left+r.width/2,r.bottom-20,10);petals(12)}
+// modal
+function openLetter(){$('modal').classList.add('on');document.body.classList.add('lock');hearts(innerWidth/2,innerHeight*.6,10);petals(16)}
+function closeLetter(){$('modal').classList.remove('on');document.body.classList.remove('lock')}
+addEventListener('keydown',e=>{if(e.key==='Escape')closeLetter()});
+// effects
+function hearts(x,y,n=1){if(reduce)return;for(let i=0;i<n;i++){const h=document.createElement('div');h.className='heart';h.textContent=['🖤','✨','🤍','💗'][Math.floor(Math.random()*4)];h.style.left=x+(Math.random()*80-40)+'px';h.style.top=y+'px';h.style.fontSize=14+Math.random()*16+'px';h.style.animationDelay=Math.random()*.4+'s';document.body.appendChild(h);setTimeout(()=>h.remove(),3000)}}
+function petals(n){if(reduce)return;for(let i=0;i<n;i++){const p=document.createElement('div');p.className='petal';p.style.left=Math.random()*100+'vw';{const z=10+Math.random()*14;p.style.width=z+'px';p.style.height=z*1.4+'px'}p.style.setProperty('--dx',(Math.random()*180-90)+'px');p.style.animationDuration=5+Math.random()*4+'s';p.style.animationDelay=Math.random()*1.8+'s';document.body.appendChild(p);setTimeout(()=>p.remove(),11500)}}
+addEventListener('click',e=>{if(!e.target.closest('.tilt,#modal,#garden,#giftBox,button,a'))hearts(e.clientX,e.clientY,2)});
+let ls=0;addEventListener('pointermove',e=>{if(reduce||e.pointerType==='touch'||Date.now()-ls<45)return;ls=Date.now();const s=document.createElement('div');s.className='spark';s.style.left=e.clientX+'px';s.style.top=e.clientY+'px';document.body.appendChild(s);setTimeout(()=>s.remove(),1000)});
+addEventListener('scroll',()=>{const m=document.documentElement.scrollHeight-innerHeight;$('progress').style.width=(m>0?scrollY/m*100:0)+'%'},{passive:true});
+setInterval(()=>{if(!document.body.classList.contains('lock'))petals(3)},4000);
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+lucide.createIcons();
+// gift
+const gb=$('giftBox');$('giftRose').innerHTML=rose();
+function openGift(){
+ if(gb.classList.contains('opened'))return;
+ gb.classList.add('opened');$('flash').classList.add('on');setTimeout(()=>$('flash').classList.remove('on'),1700);
+ setTimeout(()=>$('giftRose').firstChild.classList.add('go'),1500);
+ const r=gb.getBoundingClientRect();hearts(r.left+r.width/2,r.top+r.height/2,14);petals(40);
+ if(!reduce)for(let i=0;i<8;i++){const o=document.createElement('span');o.className='orbit';o.textContent=i%2?'✦':'✧';o.style.animationDelay=-(i*9/8)+'s';o.style.fontSize=10+(i%3)*4+'px';gb.appendChild(o)}
+ document.querySelectorAll('#giftMsg .ln').forEach((l,i)=>setTimeout(()=>l.classList.add('show'),2800+i*1800));
 }
-function openLetter(){$('modal').classList.add('on')}
-function closeLetter(){$('modal').classList.remove('on')}
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLetter()});
-
-function spawnHeart(){
-  var h=document.createElement('div');h.className='heart';
-  h.textContent=['🖤','💖','🌹','✨'][Math.floor(Math.random()*4)];
-  h.style.left=(Math.random()*80+10)+'vw';h.style.top='80vh';h.style.fontSize=(Math.random()*20+24)+'px';
-  document.body.appendChild(h);setTimeout(function(){h.remove()},2400);
-}
-function shower(){
-  for(var i=0;i<30;i++)(function(i){setTimeout(function(){
-    var p=document.createElement('div');p.className='petal';
-    p.style.left=Math.random()*100+'vw';p.style.width=(Math.random()*12+10)+'px';p.style.height=(Math.random()*16+12)+'px';
-    p.style.setProperty('--dx',((Math.random()-.5)*200)+'px');p.style.animationDuration=(Math.random()*3+3)+'s';
-    document.body.appendChild(p);setTimeout(function(){p.remove()},6500);
-  },i*120)})(i);
-}
-
-// starfield
-(function(){
-  var c=$('fx'),x=c.getContext('2d'),s=[];
-  function rs(){c.width=innerWidth;c.height=innerHeight;s=Array.from({length:45},function(){return{x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.5+.5,a:Math.random(),d:Math.random()*.02+.005}})}
-  addEventListener('resize',rs);rs();
-  (function draw(){x.clearRect(0,0,c.width,c.height);s.forEach(function(t){t.a+=t.d;if(t.a>1||t.a<0)t.d=-t.d;x.fillStyle='rgba(244,63,94,'+Math.abs(t.a)*.6+')';x.beginPath();x.arc(t.x,t.y,t.r,0,6.283);x.fill()});requestAnimationFrame(draw)})();
-})();
-
-addEventListener('scroll',function(){
-  var d=document.documentElement,h=d.scrollHeight-d.clientHeight;
-  $('progress').style.width=(h>0?d.scrollTop/h*100:0)+'%';
-},{passive:true});
+function shower(){petals(50);hearts(innerWidth/2,innerHeight*.7,16)}
+gb.onclick=openGift;gb.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openGift()}};
+$('heroRose').innerHTML=rose();
+document.querySelectorAll('.rs').forEach(e=>e.innerHTML=rose());
+// moods
+const moods=[['😊 Happy','Then today is already perfect. Your smile is my favourite weather.'],['🥱 Tired','Rest, my love. Let the world wait. I am sending you the softest prayer.'],['🥺 Missing you','I miss you more. Close your eyes, my love, I am right there beside you.'],['😔 Sad','Come here, my love. Whatever it is, we carry it together. You are never alone.'],['🔥 Feeling brave','That is my girl. Go and shine. I am cheering the loudest.'],['🥰 In love','Same, my love. Forever, and a little more.']];
+moods.forEach(([l,m])=>{const b=document.createElement('button');b.className='chip';b.textContent=l;b.onclick=()=>{document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));b.classList.add('on');const el=$('moodMsg');el.style.opacity=0;setTimeout(()=>{el.textContent=m;el.style.opacity=1},300);const r=b.getBoundingClientRect();hearts(r.left+r.width/2,r.top,5)};$('moods').appendChild(b)});
+// tap to love
+let lc=0;const lms={1:'Ahmad felt that 🖤',5:'He is smiling like a fool.',10:'Okay, now he is blushing.',20:'He was yours from the very first tap.',50:'Heart overload. He cannot breathe, in the best way.'};
+$('loveBtn').onclick=e=>{lc++;$('lc').textContent=lc;if(lms[lc])$('lm').textContent=lms[lc];hearts(e.clientX||innerWidth/2,e.clientY||innerHeight/2,4);if(lc%10===0)petals(14)};
+// themes
+const th=[['rose','Black rose'],['hot','Hot love'],['violet','Midnight']];let ti=0;
+$('theme').onclick=()=>{ti=(ti+1)%th.length;document.body.dataset.t=th[ti][0];$('themeL').textContent=th[ti][1];petals(6)};
+// music
+const mb=$('music'),audio=$('backgroundAudio');
+function setPlay(p){$('musicIcon').innerHTML=`<i data-lucide="${p?'pause':'play'}"></i>`;lucide.createIcons();$('eq').classList.toggle('play',p);$('musicLabel').textContent=p?'Our vibe is on':'Play our vibe';mb.setAttribute('aria-pressed',p)}
+audio.addEventListener('play',()=>setPlay(true));audio.addEventListener('pause',()=>setPlay(false));
+audio.addEventListener('error',()=>console.error('Unable to load song.mp3:',audio.error));
+mb.addEventListener('click',()=>{audio.paused?audio.play().catch(e=>console.error('Unable to play song.mp3:',e)):audio.pause()});
+// canvas: drifting black-rose petals + ember dust
+const cv=$('fx'),cx=cv.getContext('2d');let W,H;const ps=[];
+function size(){W=cv.width=innerWidth;H=cv.height=innerHeight}addEventListener('resize',size);size();
+const N=Math.min(60,Math.floor(innerWidth/22));
+for(let i=0;i<N;i++){const pet=i%3===0;ps.push({x:Math.random()*W,y:Math.random()*H,r:pet?5+Math.random()*7:Math.random()*2+.4,v:Math.random()*.5+.15,a:Math.random()*6.28,pet,c:pet?['#3b0a18','#7f1d2d','#1a0509'][i%3]:'244,63,94'})}
+(function tick(){cx.clearRect(0,0,W,H);
+ ps.forEach(p=>{p.y+=p.pet?p.v:-p.v*.6;p.a+=.012;p.x+=Math.sin(p.a)*(p.pet?.8:.3);
+  if(p.y>H+20)p.y=-20;if(p.y<-10)p.y=H+10;
+  if(p.pet){cx.save();cx.translate(p.x,p.y);cx.rotate(p.a*1.5);cx.fillStyle=p.c;cx.strokeStyle='rgba(244,63,94,.35)';cx.beginPath();cx.ellipse(0,0,p.r,p.r*.6,0,0,7);cx.fill();cx.stroke();cx.restore()}
+  else{const al=.35+Math.sin(p.a*2)*.25,g=cx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*6);g.addColorStop(0,`rgba(${p.c},${al})`);g.addColorStop(1,`rgba(${p.c},0)`);cx.fillStyle=g;cx.beginPath();cx.arc(p.x,p.y,p.r*6,0,7);cx.fill()}});
+ requestAnimationFrame(tick)})();
+if(reduce){$('gate').classList.add('gone');document.body.classList.remove('lock');startHero()}
 </script>
+<!-- upgrade layer: fixes + upgrades -->
 <script>
-(function(){
-  // 18 Oct 2026, 12:00 AM Pakistan time (UTC+5). Add #test to the link to skip the timer while testing.
-  var TARGET=new Date('2026-10-18T00:00:00+05:00').getTime();
-  var w=document.getElementById('wait'),done=false;
-  function two(n){return n<10?'0'+n:''+n}
-  function unlock(live){
-    if(done)return;done=true;
-    document.body.classList.remove('waiting');
-    w.classList.add('gone');
-    if(live)shower();
-  }
-  function tick(){
-    var d=TARGET-Date.now();
-    if(d<=0){document.getElementById('tD').textContent=document.getElementById('tH').textContent=document.getElementById('tM').textContent=document.getElementById('tS').textContent='00';unlock(true);return}
-    var s=Math.floor(d/1000);
-    document.getElementById('tD').textContent=two(Math.floor(s/86400));
-    document.getElementById('tH').textContent=two(Math.floor(s%86400/3600));
-    document.getElementById('tM').textContent=two(Math.floor(s%3600/60));
-    document.getElementById('tS').textContent=two(s%60);
-  }
-  document.addEventListener('DOMContentLoaded',function(){
-    document.getElementById('waitRose').innerHTML=makeRose('go spin');
-    if(location.hash==='#test'||Date.now()>=TARGET){unlock(false);return}
-    tick();setInterval(function(){if(!done)tick()},1000);
-  });
+/* upgrade-all.js: CSS + HTML fix + JS fixes in one file. Paste inside <script>...</script> before </body>, or load with <script src="upgrade-all.js"></script> */
+(()=>{const s=document.createElement("style");s.id="upgrade-css";s.textContent="/* fixes.css — paste in a <style> AFTER your existing one (or link it). Overrides only; nothing removed. */\nheader,#gift{overflow:hidden}                       /* ripple/aura/orbits caused sideways scroll on phones */\nhtml:has(body.lock){overflow:hidden}                 /* iOS: keep page locked behind gate/letter */\nbutton,[role=button]{touch-action:manipulation}\n.btn:active{transform:scale(.96)}\n#loveBtn:active{animation:none;transform:scale(.8)}  /* beat animation was overriding :active */\n/* gate + hero: button reachable in ~2s instead of ~4.4s, hero CTA in ~2s instead of ~4.2s after entering */\n#gate p.script.late{animation-delay:1s!important}\n#gate p.serif.late{animation-delay:1.6s!important}\n#bloomBtn{animation-delay:2.2s!important}\nheader .fade:nth-child(2){animation-delay:.1s!important}\nheader .fade:nth-child(4){animation-delay:1.3s!important}\nheader .fade:nth-child(5){animation-delay:1.5s!important}\nheader .fade:nth-child(6){animation-delay:1.7s!important}\nheader .fade:nth-child(7){animation-delay:1.9s!important}\n/* cards: back faces were clipping on narrow phones */\n.flip-in{min-height:340px}\n/* garden */\n.whisper{font-size:1.7rem;text-shadow:0 0 12px #000,0 0 4px #000;animation:whisp 3.2s ease-out forwards}\n@keyframes whisp{0%{opacity:0;transform:translateY(10px)}15%,70%{opacity:1}100%{opacity:0;transform:translateY(-34px)}}\n.plant .rose,.plant .rose.go{animation:none;filter:drop-shadow(0 0 6px rgba(190,18,60,.5))}\n/* gift: lid was clipped by the svg viewBox and never visibly lifted */\n#giftBox{max-width:100%}\n#giftBox svg{overflow:visible}\n#lid{transition:transform 1.3s cubic-bezier(.3,1.2,.5,1),opacity .9s .5s}\n.opened #lid{transform:translate(-90px,-130px) rotate(-26deg);opacity:0}\n/* finale heart: class \"heart\" collided with the floating-heart class */\n.fin.show svg.fin-heart{animation:beat 2.4s ease-in-out 5.5s infinite}\n/* modal */\n#sheet{max-height:88vh;max-height:88dvh}\n.letter{overscroll-behavior:contain;-webkit-overflow-scrolling:touch}\n#modal.on .letter p{animation-duration:.9s}\n#modal.on .letter p:nth-of-type(1){animation-delay:.3s}#modal.on .letter p:nth-of-type(2){animation-delay:.9s}\n#modal.on .letter p:nth-of-type(3){animation-delay:1.5s}#modal.on .letter p:nth-of-type(4){animation-delay:2.1s}\n#modal.on .letter p:nth-of-type(5){animation-delay:2.7s}#modal.on .letter p:nth-of-type(6){animation-delay:3.3s}\n#modal.on .letter p:nth-of-type(7){animation-delay:3.9s}\n/* small things */\n.lantern{font-size:12px;width:96px}\n.chip.on{border-color:#f3a9bd;box-shadow:0 0 0 1px #f3a9bd inset,0 0 24px -6px var(--glow)}\n#garden:focus-visible,#giftBox:focus-visible,input:focus-visible,.chip:focus-visible{outline:2px solid #f3a9bd;outline-offset:3px}\n@media(max-width:420px){#musicLabel{display:none}#music{padding:.65rem .9rem}}\n@media(max-width:360px){#themeL{display:none}}\nbody[data-t=hot] .glass{border-color:rgba(253,164,175,.3)}\nbody[data-t=violet] .glass{border-color:rgba(196,181,253,.28)}\nbody[data-t=violet] .hot,body[data-t=violet] .cta,body[data-t=violet] .chip.on{background:linear-gradient(135deg,rgba(109,40,217,.65),rgba(30,27,75,.55))}\n";document.head.appendChild(s);const h=document.querySelector("svg.heart");if(h)h.classList.replace("heart","fin-heart")})();
+/* fixes.js — paste in a NEW <script> right AFTER your existing one (before </body>), or load it with <script src="fixes.js"></script>.
+   Overrides functions by name and reuses your existing globals ($, rose, hearts, petals, audio, sky, notes, ...). */
+(()=>{
+const gateGone=()=>$('gate').classList.contains('gone');
+const page=[...document.querySelectorAll('header,main,section,footer,#music,#theme')];
+const setInert=v=>page.forEach(e=>{e.inert=v});
+$('name').textContent='Rumaisa';                      // readable if JS animation fails
+$('typer').removeAttribute('aria-live');              // typing effect spammed screen readers
+if(!gateGone()){setInert(true);const old=$('bloomBtn').onclick;$('bloomBtn').onclick=e=>{setInert(false);old(e)}}
+
+// petals: skip while tab hidden and cap live DOM
+const _p=window.petals;
+window.petals=n=>{if(document.hidden||document.querySelectorAll('.petal').length>60)return;_p(n)};
+
+// letter modal: focus management, scroll reset, Escape no longer unlocks scroll behind the gate
+let lastF;
+window.openLetter=()=>{const m=$('modal');lastF=document.activeElement;m.classList.add('on');document.body.classList.add('lock');setInert(true);
+ m.querySelector('.letter').scrollTop=0;hearts(innerWidth/2,innerHeight*.6,10);petals(16);setTimeout(()=>m.querySelector('button').focus(),60)};
+window.closeLetter=()=>{const m=$('modal');if(!m.classList.contains('on'))return;m.classList.remove('on');setInert(false);
+ if(gateGone())document.body.classList.remove('lock');if(lastF&&lastF.focus)lastF.focus()};
+
+// garden: clamp inside bounds, readable whispers, hard cap of 14 plants
+window.plant=x=>{
+ const g=$('garden'),W=g.clientWidth,H=g.clientHeight;x=Math.min(Math.max(x,32),W-32);
+ const p=document.createElement('div');p.className='plant';p.style.left=x+'px';
+ const h=Math.min(70+Math.random()*120,H-90);p.innerHTML='<div class="stem"></div>'+rose();g.appendChild(p);
+ requestAnimationFrame(()=>requestAnimationFrame(()=>{p.firstChild.style.height=h+'px';setTimeout(()=>{const r=p.querySelector('.rose');if(r)r.classList.add('go')},900)}));
+ gc++;$('gc').textContent=gc;
+ const w=document.createElement('div');w.className='whisper';w.textContent=whispers[gc%whispers.length];g.appendChild(w);
+ const ww=w.offsetWidth;w.style.left=Math.min(Math.max(6,x-ww/2),W-ww-6)+'px';w.style.bottom=Math.min(h+64,H-60)+'px';setTimeout(()=>w.remove(),3300);
+ while(g.querySelectorAll('.plant').length>14)g.querySelector('.plant').remove();
+};
+
+// wishes: client-side only, said honestly; Enter submits; stars capped
+document.querySelector('#cake h2+p').textContent='Write your wish and watch it rise into the night sky. It stays on this page. Nothing is sent or saved.';
+wr[0]='Up it goes, Rumaisa. May Allah answer it, and may it come true. 🖤';
+wr[1]='Whisper it to Allah too. He is the best listener. 🤲';
+wr[2]='Watch it rise. May every good wish in your heart come true. ✨';
+window.sendWish=()=>{const i=$('wishIn'),v=i.value.trim(),m=$('wishMsg');
+ if(!v){m.textContent='Write your wish first, then watch it rise. 🖤';i.focus();return}
+ const l=document.createElement('div'),left=15+Math.random()*50;l.className='lantern';l.textContent=v;l.style.left=left+'%';sky.appendChild(l);
+ setTimeout(()=>{l.remove();const s=document.createElement('i');s.className='st big';s.style.left=left+'%';s.style.top=8+Math.random()*30+'%';s.title=v;sky.appendChild(s);
+  const b=sky.querySelectorAll('.st.big');if(b.length>10)b[0].remove()},9000);
+ i.value='';m.textContent=wr[wi++%wr.length];const r=sky.getBoundingClientRect();hearts(r.left+r.width/2,r.bottom-20,10);petals(12)};
+$('wishIn').addEventListener('keydown',e=>{if(e.key==='Enter')sendWish()});
+
+// love counter copy: no pretending Ahmad receives live taps
+$('loveBtn').parentElement.querySelector('p.serif').textContent='Tap to send love back to Ahmad';
+$('lc').parentElement.lastChild.textContent=' hugs (counted on this page only)';
+Object.assign(lms,{1:'Every tap is a hug. 🖤',5:'Ahmad will hear about this one.',10:'Ten hugs. Ahmad is going to hear about this.',20:'He was yours from the very first tap.',50:'Fifty! Enough love for the whole night sky.'});
+
+// moods + cards: proper pressed state and screen-reader text for the back face
+const chips=document.querySelectorAll('.chip');
+chips.forEach(c=>{c.setAttribute('aria-pressed','false');c.addEventListener('click',()=>chips.forEach(x=>x.setAttribute('aria-pressed',x===c)))});
+document.querySelectorAll('.tilt').forEach((t,i)=>{const n=notes[i];t.setAttribute('aria-pressed','false');
+ new MutationObserver(()=>{const o=t.classList.contains('open');t.setAttribute('aria-pressed',o);t.setAttribute('aria-label',o?n.q+' '+n.b:'Reveal note: '+n.t)}).observe(t,{attributes:true,attributeFilter:['class']})});
+
+// music: visible fallback if song.mp3 is missing
+audio.addEventListener('error',()=>{$('musicLabel').textContent='Music unavailable';mb.disabled=true;mb.style.opacity=.6;$('eq').classList.remove('play')});
 })();
 </script>
 </body>
