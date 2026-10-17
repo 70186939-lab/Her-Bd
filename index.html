@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,6 +43,8 @@ button:focus-visible,.tilt:focus-visible{outline:2px solid #f3a9bd;outline-offse
 .rose.go{animation:spin 50s linear infinite}
 @keyframes bloom{from{transform:scale(.04) rotate(-70deg);opacity:0}}
 @keyframes spin{to{transform:rotate(360deg)}}
+#gate{position:fixed;inset:0;z-index:100;background:radial-gradient(circle at 50% 45%,#2a0612,#000 70%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:1.5rem;transition:opacity 1.6s ease,visibility 1.6s,transform 1.6s}
+#gate.gone{opacity:0;visibility:hidden;transform:scale(1.15)}
 /* marquee */
 .mq{display:flex;width:max-content;animation:mq 40s linear infinite}@keyframes mq{to{transform:translateX(-50%)}}
 /* cards */
@@ -79,6 +80,8 @@ button:focus-visible,.tilt:focus-visible{outline:2px solid #f3a9bd;outline-offse
 /* candle */
 .flame{transform-origin:50% 100%;animation:fk .35s ease-in-out infinite alternate;transition:opacity .6s}@keyframes fk{to{transform:scale(1.12,.92) rotate(2deg)}}
 .out .flame{opacity:0;animation:none}.smoke{opacity:0;transition:opacity 1s}.out .smoke{opacity:.7;transform:translateY(-14px);transition:all 2s}
+/* hero waits for the gate to open */
+body:not(.ready) .fade,body:not(.ready) .ltr{animation-play-state:paused}
 /* crystal cards: tilt layer and flip layer are separate so both feel smooth */
 .tilt{perspective:none;transform-style:preserve-3d;transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .25s ease-out}
 .tilt .flip-in{transform:none;transition:transform .95s cubic-bezier(.2,.7,.2,1)}
@@ -114,7 +117,10 @@ button:focus-visible,.tilt:focus-visible{outline:2px solid #f3a9bd;outline-offse
 @keyframes orbit{from{transform:rotate(0) translateX(150px) rotate(0)}to{transform:rotate(360deg) translateX(150px) rotate(-360deg)}}
 #giftBox~#gHint{transition:opacity 1s}#giftBox.opened~#gHint{opacity:0}
 .ln{opacity:0;transform:translateY(18px);transition:opacity 1.4s ease,transform 1.4s cubic-bezier(.2,.7,.2,1)}.ln.show{opacity:1;transform:none}
-/* animated hero rose */
+/* animated gate + hero rose */
+#gateRose{position:relative;transition:transform 2s cubic-bezier(.2,.8,.2,1),filter 2s}
+#gate.burst #gateRose{transform:scale(2.1);filter:brightness(2) drop-shadow(0 0 70px #f43f5e)}
+.late{opacity:0;animation:fd 1.4s ease 2.6s forwards}
 .rip::before,.rip::after{content:"";position:absolute;inset:-8%;border-radius:50%;border:1px solid rgba(244,63,94,.4);animation:ripple 5s ease-out infinite;pointer-events:none}
 .rip::after{animation-delay:2.5s}
 @keyframes ripple{from{transform:scale(.7);opacity:1}to{transform:scale(1.45);opacity:0}}
@@ -142,6 +148,10 @@ body[data-t=violet]{--glow:rgba(167,139,250,.5);background:radial-gradient(ellip
 .rv.show .bl .p{animation-play-state:running}
 #flash{position:fixed;inset:0;pointer-events:none;z-index:55;opacity:0;background:radial-gradient(circle,rgba(244,63,94,.55),transparent 62%)}
 #flash.on{animation:fl2 1.6s ease-out}@keyframes fl2{20%{opacity:1}100%{opacity:0}}
+.rose.gather .p{animation:gather 2.4s cubic-bezier(.2,.8,.2,1) both}
+@keyframes gather{from{transform:translateY(-150px) rotate(170deg) scale(.45);opacity:0}55%{opacity:1}}
+#gateRose .rose{transition:filter 1.6s}
+#gateRose.lit .rose{filter:drop-shadow(0 0 38px rgba(244,63,94,.95)) drop-shadow(0 0 10px rgba(255,255,255,.35))}
 .cta{position:relative;display:inline-flex;align-items:center;gap:.7rem;padding:1.1rem 2.5rem;border-radius:999px;font-weight:500;letter-spacing:.02em;color:#fff;background:linear-gradient(135deg,#be123c,#581c87);box-shadow:0 0 0 1px rgba(255,255,255,.28) inset,0 10px 40px -6px rgba(190,18,60,.7);overflow:hidden;transition:transform .35s;animation:ctaG 3s ease-in-out infinite}
 .cta::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.4) 50%,transparent 65%);transform:translateX(-120%);animation:ctaS 3.5s ease-in-out infinite}
 .cta:hover{transform:translateY(-3px) scale(1.05)}
@@ -152,7 +162,7 @@ body[data-t=violet]{--glow:rgba(167,139,250,.5);background:radial-gradient(ellip
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01s!important}.rv,.ltr,.fade,.letter p{opacity:1;transform:none}.rose .p{opacity:1;transform:none}}
 </style>
 </head>
-<body>
+<body class="lock">
 <div id="progress"></div><div id="flash"></div>
 <canvas id="fx"></canvas>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
@@ -160,6 +170,13 @@ body[data-t=violet]{--glow:rgba(167,139,250,.5);background:radial-gradient(ellip
 <div class="orb" style="width:420px;height:420px;background:#9f1239;opacity:.3;top:-100px;left:-120px"></div>
 <div class="orb" style="width:460px;height:460px;background:#4c1d95;opacity:.28;bottom:-140px;right:-140px;animation-delay:-7s"></div>
 <div class="orb" style="width:300px;height:300px;background:#7f1d1d;opacity:.22;top:45%;left:55%;animation-delay:-12s"></div>
+
+<!-- Gate -->
+<div id="gate">
+  <div id="gateRose" class="w-56 h-56 sm:w-72 sm:h-72"></div>
+  <p class="script text-5xl mt-4 late">For my Rumaisa</p><p class="serif italic text-xl text-rose-200/80 late" style="animation-delay:3.6s">18 October 2026 · from Ahmad, with all his love</p>
+  <button id="bloomBtn" class="btn glass hot late rounded-full px-9 py-4 mt-6 font-medium flex items-center gap-2" style="animation-delay:4.4s"><i data-lucide="flower-2" class="w-5 h-5"></i> Tap to enter 🖤</button>
+</div>
 
 <button id="music" class="glass btn fixed right-4 z-50 flex items-center gap-3 rounded-full pl-4 pr-5 py-2.5 text-sm" style="top:max(1rem,env(safe-area-inset-top))" aria-pressed="false">
   <span id="musicIcon" class="w-4 h-4 text-rose-300"><i data-lucide="play"></i></span>
@@ -214,7 +231,7 @@ body[data-t=violet]{--glow:rgba(167,139,250,.5);background:radial-gradient(ellip
       <h2 class="serif font-bold text-3xl md:text-4xl sheen">Whisper a wish to the stars</h2>
       <p class="text-rose-200/70 font-light mt-2">Write it here, Rumaisa. I'll send it up for you, wrapped in a prayer.</p>
       <div id="sky" class="relative h-72 mt-6 rounded-3xl overflow-hidden" style="background:radial-gradient(ellipse at 50% 110%,#7f1d3a,#1a0510 55%,#050205)"></div>
-      <input id="wishIn" maxlength="70" aria-label="Your wish" placeholder="My wish is..." class="mt-5 w-full rounded-full px-6 py-3.5 bg-white/5 border border-white/20 text-center text-rose-50 placeholder-rose-200/40 outline-none focus:border-rose-400">
+      <input id="wishIn" maxlength="70" aria-label="Your wish" placeholder="My wish is…" class="mt-5 w-full rounded-full px-6 py-3.5 bg-white/5 border border-white/20 text-center text-rose-50 placeholder-rose-200/40 outline-none focus:border-rose-400">
       <button onclick="sendWish()" class="btn glass hot rounded-full px-8 py-3.5 mt-4 font-medium inline-flex items-center gap-2"><i data-lucide="sparkles" class="w-5 h-5"></i> Send my wish 🖤</button>
       <p id="wishMsg" class="serif italic text-xl mt-5 min-h-[3.5rem] text-rose-100/90" aria-live="polite"></p>
     </div>
@@ -235,7 +252,7 @@ body[data-t=violet]{--glow:rgba(167,139,250,.5);background:radial-gradient(ellip
     <div class="rv">
       <button onclick="openLetter()" class="btn glass rounded-3xl px-10 py-10 max-w-md mx-auto block w-full">
         <i data-lucide="gift" class="w-12 h-12 mx-auto text-rose-300 float"></i>
-        <span class="block serif font-bold text-3xl mt-4">One last thing, Rumaisa...</span>
+        <span class="block serif font-bold text-3xl mt-4">One last thing, Rumaisa…</span>
         <span class="block text-sm text-rose-200/70 mt-2 font-light">A letter I wrote with my whole heart. Tap to open.</span>
       </button>
     </div>
@@ -271,8 +288,8 @@ body[data-t=violet]{--glow:rgba(167,139,250,.5);background:radial-gradient(ellip
   <section id="gift" class="px-5 py-24 text-center">
     <div class="rv max-w-2xl mx-auto">
       <h2 class="serif font-bold text-4xl md:text-6xl sheen">A gift only for you</h2>
-      <p class="mt-3 text-rose-200/70 font-light">Your surprise is here, Rumaisa.</p>
-      <div id="giftBox" class="relative mx-auto mt-10 w-72 h-[26rem]" role="button" tabindex="0" aria-label="Open your gift" aria-expanded="false">
+      <p class="mt-3 text-rose-200/70 font-light">Open it slowly, Rumaisa.</p>
+      <div id="giftBox" class="relative mx-auto mt-10 w-72 h-[26rem]" role="button" tabindex="0" aria-label="Open your gift">
         <div class="aura"></div><div class="aura a2"></div>
         <div id="giftRose"></div>
         <svg viewBox="0 0 200 170" class="absolute bottom-0 left-0 w-full" aria-hidden="true">
@@ -333,8 +350,17 @@ const rose=()=>{let s='<svg viewBox="0 0 100 100" class="rose" aria-hidden="true
   for(let j=0;j<n;j++){const a=j*360/n+off;
    s+=`<g transform="rotate(${a} 50 50)"><g class="p" style="animation-delay:${(i*.3+j*.05).toFixed(2)}s"><path d="${PET}" transform="translate(50 52) scale(${sc})" fill="url(#rg)" stroke="rgba(251,113,133,.5)" stroke-width="${(.7/sc).toFixed(2)}" stroke-linejoin="round"/></g></g>`}});
  return s+'<path d="M50 50m-3 0a3 3 0 1 1 3 3a6 6 0 0 1-8-7a9 9 0 0 1 13 3" fill="none" stroke="rgba(251,113,133,.55)" stroke-width=".9" stroke-linecap="round"/></svg>'};
+const gr=$('gateRose');gr.innerHTML=rose();gr.classList.add('rip');gr.firstChild.classList.add('go','gather');setTimeout(()=>gr.classList.add('lit'),4200);
+function gp(n,b){if(reduce)return;for(let i=0;i<n;i++){const p=document.createElement('div');p.className='petal';p.style.zIndex=101;p.style.left=Math.random()*100+'vw';{const z=10+Math.random()*14;p.style.width=z+'px';p.style.height=z*1.4+'px'}p.style.setProperty('--dx',(Math.random()*160-80)+'px');p.style.animationDuration=(b?3:6)+Math.random()*3+'s';document.body.appendChild(p);setTimeout(()=>p.remove(),10000)}}
+gp(8);const gi=setInterval(()=>{if($('gate').classList.contains('gone'))clearInterval(gi);else gp(2)},1200);
+// gate
+$('bloomBtn').onclick=()=>{
+ $('gate').classList.add('burst');$('bloomBtn').style.visibility='hidden';gp(40,1);
+ audio.play().catch(()=>{});
+ setTimeout(()=>{$('gate').classList.add('gone');document.body.classList.remove('lock');petals(30);startHero()},2200);
+};
 // hero
-function startHero(){$('heroRose').firstChild.classList.add('go');
+function startHero(){document.body.classList.add('ready');$('heroRose').firstChild.classList.add('go');
  const nm=$('name');nm.innerHTML='';
  [...'Rumaisa'].forEach((c,i)=>{const s=document.createElement('span');s.className='ltr sheen';s.textContent=c;s.style.animationDelay=.2+i*.16+'s';nm.appendChild(s)});
  nm.style.perspective='800px';
@@ -412,19 +438,16 @@ document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 lucide.createIcons();
 // gift
 const gb=$('giftBox');$('giftRose').innerHTML=rose();
-function openGift(immediate=false){
+function openGift(){
  if(gb.classList.contains('opened'))return;
- gb.classList.add('opened');gb.setAttribute('aria-label','Your gift is open');gb.setAttribute('aria-expanded','true');$('flash').classList.add('on');setTimeout(()=>$('flash').classList.remove('on'),1700);
+ gb.classList.add('opened');$('flash').classList.add('on');setTimeout(()=>$('flash').classList.remove('on'),1700);
  setTimeout(()=>$('giftRose').firstChild.classList.add('go'),1500);
  const r=gb.getBoundingClientRect();hearts(r.left+r.width/2,r.top+r.height/2,14);petals(40);
  if(!reduce)for(let i=0;i<8;i++){const o=document.createElement('span');o.className='orbit';o.textContent=i%2?'✦':'✧';o.style.animationDelay=-(i*9/8)+'s';o.style.fontSize=10+(i%3)*4+'px';gb.appendChild(o)}
- document.querySelectorAll('#giftMsg .ln').forEach((l,i)=>{
-  if(immediate){l.classList.add('show');return}
-  setTimeout(()=>l.classList.add('show'),2800+i*1800);
- });
+ document.querySelectorAll('#giftMsg .ln').forEach((l,i)=>setTimeout(()=>l.classList.add('show'),2800+i*1800));
 }
 function shower(){petals(50);hearts(innerWidth/2,innerHeight*.7,16)}
-gb.onclick=()=>openGift();gb.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openGift()}};
+gb.onclick=openGift;gb.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openGift()}};
 $('heroRose').innerHTML=rose();
 document.querySelectorAll('.rs').forEach(e=>e.innerHTML=rose());
 // moods
@@ -453,34 +476,32 @@ for(let i=0;i<N;i++){const pet=i%3===0;ps.push({x:Math.random()*W,y:Math.random(
   if(p.pet){cx.save();cx.translate(p.x,p.y);cx.rotate(p.a*1.5);cx.fillStyle=p.c;cx.strokeStyle='rgba(244,63,94,.35)';cx.beginPath();cx.ellipse(0,0,p.r,p.r*.6,0,0,7);cx.fill();cx.stroke();cx.restore()}
   else{const al=.35+Math.sin(p.a*2)*.25,g=cx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*6);g.addColorStop(0,`rgba(${p.c},${al})`);g.addColorStop(1,`rgba(${p.c},0)`);cx.fillStyle=g;cx.beginPath();cx.arc(p.x,p.y,p.r*6,0,7);cx.fill()}});
  requestAnimationFrame(tick)})();
-startHero();
-document.documentElement.style.scrollBehavior='auto';
-window.scrollTo(0,$('gift').offsetTop);
-document.documentElement.style.removeProperty('scroll-behavior');
-openGift(true);
+if(reduce){$('gate').classList.add('gone');document.body.classList.remove('lock');startHero()}
 </script>
 <!-- upgrade layer: fixes + upgrades -->
 <script>
 /* upgrade-all.js: CSS + HTML fix + JS fixes in one file. Paste inside <script>...</script> before </body>, or load with <script src="upgrade-all.js"></script> */
-(()=>{const s=document.createElement("style");s.id="upgrade-css";s.textContent="/* fixes.css — paste in a <style> AFTER your existing one (or link it). Overrides only; nothing removed. */\nheader,#gift{overflow:hidden}                       /* ripple/aura/orbits caused sideways scroll on phones */\nhtml:has(body.lock){overflow:hidden}                 /* iOS: keep page locked behind the letter modal */\nbutton,[role=button]{touch-action:manipulation}\n.btn:active{transform:scale(.96)}\n#loveBtn:active{animation:none;transform:scale(.8)}  /* beat animation was overriding :active */\nheader .fade:nth-child(2){animation-delay:.1s!important}\nheader .fade:nth-child(4){animation-delay:1.3s!important}\nheader .fade:nth-child(5){animation-delay:1.5s!important}\nheader .fade:nth-child(6){animation-delay:1.7s!important}\nheader .fade:nth-child(7){animation-delay:1.9s!important}\n/* cards: back faces were clipping on narrow phones */\n.flip-in{min-height:340px}\n/* garden */\n.whisper{font-size:1.7rem;text-shadow:0 0 12px #000,0 0 4px #000;animation:whisp 3.2s ease-out forwards}\n@keyframes whisp{0%{opacity:0;transform:translateY(10px)}15%,70%{opacity:1}100%{opacity:0;transform:translateY(-34px)}}\n.plant .rose,.plant .rose.go{animation:none;filter:drop-shadow(0 0 6px rgba(190,18,60,.5))}\n/* gift: lid was clipped by the svg viewBox and never visibly lifted */\n#giftBox{max-width:100%}\n#giftBox svg{overflow:visible}\n#lid{transition:transform 1.3s cubic-bezier(.3,1.2,.5,1),opacity .9s .5s}\n.opened #lid{transform:translate(-90px,-130px) rotate(-26deg);opacity:0}\n/* finale heart: class \"heart\" collided with the floating-heart class */\n.fin.show svg.fin-heart{animation:beat 2.4s ease-in-out 5.5s infinite}\n/* modal */\n#sheet{max-height:88vh;max-height:88dvh}\n.letter{overscroll-behavior:contain;-webkit-overflow-scrolling:touch}\n#modal.on .letter p{animation-duration:.9s}\n#modal.on .letter p:nth-of-type(1){animation-delay:.3s}#modal.on .letter p:nth-of-type(2){animation-delay:.9s}\n#modal.on .letter p:nth-of-type(3){animation-delay:1.5s}#modal.on .letter p:nth-of-type(4){animation-delay:2.1s}\n#modal.on .letter p:nth-of-type(5){animation-delay:2.7s}#modal.on .letter p:nth-of-type(6){animation-delay:3.3s}\n#modal.on .letter p:nth-of-type(7){animation-delay:3.9s}\n/* small things */\n.lantern{font-size:12px;width:96px}\n.chip.on{border-color:#f3a9bd;box-shadow:0 0 0 1px #f3a9bd inset,0 0 24px -6px var(--glow)}\n#garden:focus-visible,#giftBox:focus-visible,input:focus-visible,.chip:focus-visible{outline:2px solid #f3a9bd;outline-offset:3px}\n@media(max-width:420px){#musicLabel{display:none}#music{padding:.65rem .9rem}}\n@media(max-width:360px){#themeL{display:none}}\nbody[data-t=hot] .glass{border-color:rgba(253,164,175,.3)}\nbody[data-t=violet] .glass{border-color:rgba(196,181,253,.28)}\nbody[data-t=violet] .hot,body[data-t=violet] .cta,body[data-t=violet] .chip.on{background:linear-gradient(135deg,rgba(109,40,217,.65),rgba(30,27,75,.55))}\n";document.head.appendChild(s);const h=document.querySelector("svg.heart");if(h)h.classList.replace("heart","fin-heart")})();
+(()=>{const s=document.createElement("style");s.id="upgrade-css";s.textContent="/* fixes.css — paste in a <style> AFTER your existing one (or link it). Overrides only; nothing removed. */\nheader,#gift{overflow:hidden}                       /* ripple/aura/orbits caused sideways scroll on phones */\nhtml:has(body.lock){overflow:hidden}                 /* iOS: keep page locked behind gate/letter */\nbutton,[role=button]{touch-action:manipulation}\n.btn:active{transform:scale(.96)}\n#loveBtn:active{animation:none;transform:scale(.8)}  /* beat animation was overriding :active */\n/* gate + hero: button reachable in ~2s instead of ~4.4s, hero CTA in ~2s instead of ~4.2s after entering */\n#gate p.script.late{animation-delay:1s!important}\n#gate p.serif.late{animation-delay:1.6s!important}\n#bloomBtn{animation-delay:2.2s!important}\nheader .fade:nth-child(2){animation-delay:.1s!important}\nheader .fade:nth-child(4){animation-delay:1.3s!important}\nheader .fade:nth-child(5){animation-delay:1.5s!important}\nheader .fade:nth-child(6){animation-delay:1.7s!important}\nheader .fade:nth-child(7){animation-delay:1.9s!important}\n/* cards: back faces were clipping on narrow phones */\n.flip-in{min-height:340px}\n/* garden */\n.whisper{font-size:1.7rem;text-shadow:0 0 12px #000,0 0 4px #000;animation:whisp 3.2s ease-out forwards}\n@keyframes whisp{0%{opacity:0;transform:translateY(10px)}15%,70%{opacity:1}100%{opacity:0;transform:translateY(-34px)}}\n.plant .rose,.plant .rose.go{animation:none;filter:drop-shadow(0 0 6px rgba(190,18,60,.5))}\n/* gift: lid was clipped by the svg viewBox and never visibly lifted */\n#giftBox{max-width:100%}\n#giftBox svg{overflow:visible}\n#lid{transition:transform 1.3s cubic-bezier(.3,1.2,.5,1),opacity .9s .5s}\n.opened #lid{transform:translate(-90px,-130px) rotate(-26deg);opacity:0}\n/* finale heart: class \"heart\" collided with the floating-heart class */\n.fin.show svg.fin-heart{animation:beat 2.4s ease-in-out 5.5s infinite}\n/* modal */\n#sheet{max-height:88vh;max-height:88dvh}\n.letter{overscroll-behavior:contain;-webkit-overflow-scrolling:touch}\n#modal.on .letter p{animation-duration:.9s}\n#modal.on .letter p:nth-of-type(1){animation-delay:.3s}#modal.on .letter p:nth-of-type(2){animation-delay:.9s}\n#modal.on .letter p:nth-of-type(3){animation-delay:1.5s}#modal.on .letter p:nth-of-type(4){animation-delay:2.1s}\n#modal.on .letter p:nth-of-type(5){animation-delay:2.7s}#modal.on .letter p:nth-of-type(6){animation-delay:3.3s}\n#modal.on .letter p:nth-of-type(7){animation-delay:3.9s}\n/* small things */\n.lantern{font-size:12px;width:96px}\n.chip.on{border-color:#f3a9bd;box-shadow:0 0 0 1px #f3a9bd inset,0 0 24px -6px var(--glow)}\n#garden:focus-visible,#giftBox:focus-visible,input:focus-visible,.chip:focus-visible{outline:2px solid #f3a9bd;outline-offset:3px}\n@media(max-width:420px){#musicLabel{display:none}#music{padding:.65rem .9rem}}\n@media(max-width:360px){#themeL{display:none}}\nbody[data-t=hot] .glass{border-color:rgba(253,164,175,.3)}\nbody[data-t=violet] .glass{border-color:rgba(196,181,253,.28)}\nbody[data-t=violet] .hot,body[data-t=violet] .cta,body[data-t=violet] .chip.on{background:linear-gradient(135deg,rgba(109,40,217,.65),rgba(30,27,75,.55))}\n";document.head.appendChild(s);const h=document.querySelector("svg.heart");if(h)h.classList.replace("heart","fin-heart")})();
 /* fixes.js — paste in a NEW <script> right AFTER your existing one (before </body>), or load it with <script src="fixes.js"></script>.
    Overrides functions by name and reuses your existing globals ($, rose, hearts, petals, audio, sky, notes, ...). */
 (()=>{
+const gateGone=()=>$('gate').classList.contains('gone');
 const page=[...document.querySelectorAll('header,main,section,footer,#music,#theme')];
 const setInert=v=>page.forEach(e=>{e.inert=v});
 $('name').textContent='Rumaisa';                      // readable if JS animation fails
 $('typer').removeAttribute('aria-live');              // typing effect spammed screen readers
+if(!gateGone()){setInert(true);const old=$('bloomBtn').onclick;$('bloomBtn').onclick=e=>{setInert(false);old(e)}}
 
 // petals: skip while tab hidden and cap live DOM
 const _p=window.petals;
 window.petals=n=>{if(document.hidden||document.querySelectorAll('.petal').length>60)return;_p(n)};
 
-// letter modal: focus management and scroll reset
+// letter modal: focus management, scroll reset, Escape no longer unlocks scroll behind the gate
 let lastF;
 window.openLetter=()=>{const m=$('modal');lastF=document.activeElement;m.classList.add('on');document.body.classList.add('lock');setInert(true);
  m.querySelector('.letter').scrollTop=0;hearts(innerWidth/2,innerHeight*.6,10);petals(16);setTimeout(()=>m.querySelector('button').focus(),60)};
 window.closeLetter=()=>{const m=$('modal');if(!m.classList.contains('on'))return;m.classList.remove('on');setInert(false);
- document.body.classList.remove('lock');if(lastF&&lastF.focus)lastF.focus()};
+ if(gateGone())document.body.classList.remove('lock');if(lastF&&lastF.focus)lastF.focus()};
 
 // garden: clamp inside bounds, readable whispers, hard cap of 14 plants
 window.plant=x=>{
